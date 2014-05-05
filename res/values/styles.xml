@@ -1,0 +1,5 @@
+<resources>
+  <!-- Define two themes: holo dark and holo light, so users can switch. -->
+  <style name="AppTheme.Dark" parent="android:Theme.Holo">
+  </style>
+</resources>

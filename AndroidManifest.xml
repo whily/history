@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="sanguo.core"
+          package="net.whily.android.sanguo"
           android:versionCode="1"
-          android:versionName="1.0" >
-
-  <uses-sdk android:minSdkVersion="19" />
-
+          android:versionName="0.0.1" >
+  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19" />
+  
   <application
-      android:icon="@drawable/ic_launcher"
-      android:label="@string/app_name">
-    <activity android:name=".SplashActivity"
-              android:theme="@android:style/Theme.Translucent.NoTitleBar">
+    android:allowBackup="true"
+    android:icon="@drawable/ic_launcher_sanguo"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme.Dark" >
+    <activity
+        android:name="net.whily.android.sanguo.BookActivity"
+        android:label="@string/app_name" >
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".MainActivity">
-      <intent-filter>
-        <action android:name='sanguo.core.MAIN'/>
-        <category android:name='android.intent.category.DEFAULT'/>
-      </intent-filter>
-    </activity>
+    <activity android:name=".SettingsActivity"
+              android:label="@string/settings" />        
   </application>
-
 </manifest>

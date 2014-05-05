@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name"></string>
+  
+  <!--  BookActivity -->
+  <string name="sanguozhi">
+    <![CDATA[
+    <html>
+      <body>
+        <p style="-webkit-writing-mode: vertical-rl;"><span class="origin">太祖武皇帝，沛國譙人也，姓曹，諱操，字孟德，漢相國參之後。</span><span class="zhushi">曹瞞傳曰：太祖一名吉利，小字阿瞞。王沈魏書曰：其先出於黃帝。當高陽世，陸終之子曰安，是為曹姓。周武王克殷，存先世之後，封曹俠於邾。春秋之世，與於盟會，逮至戰國，為楚所滅。子孫分流，或家於沛。漢高祖之起，曹參以功封平陽侯，世襲爵士，絶而復紹，至今適嗣國於容城。</span></p>
+      </body>
+    </html>
+    ]]>
+  </string>  
+  <string name="settings"></string>
+  <string name="about"></string>  
+  
+  <!--  Activity Settings -->
+  <string name="theme">theme</string>
+
+  <!-- Activity About -->
+</resources>
