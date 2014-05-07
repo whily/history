@@ -49,10 +49,10 @@ To compile/run the code, follow the steps below:
 3. In directory `res\values`, create an xml file (e.g. pokey.xml)
    with following content: 
    
-   <?xml version="1.0" encoding="utf-8"?>
-   <resources>
-     <string name="map_api_key">YOUR_MAPS_API_KEY_HERE</string>
-   </resources>
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+      <string name="map_api_key">YOUR_MAPS_API_KEY_HERE</string>
+    </resources>
    
    To obtain Google Maps API key, visit
    https://developers.google.com/maps/documentation/android/start
