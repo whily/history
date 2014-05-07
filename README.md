@@ -43,7 +43,21 @@ To compile/run the code, follow the steps below:
    **lib** which is related to `dx`) to folder
    `$ANDROID_HOME/platform-tools`.
    
-2. In the project directory, run the following command to build the
+2. Create library `lib` in the project root directory. Copy `maps.jar`
+   of Google API to `lib` directory.
+   
+3. In directory `res\values`, create an xml file (e.g. pokey.xml)
+   with following content: 
+   
+   <?xml version="1.0" encoding="utf-8"?>
+   <resources>
+     <string name="map_api_key">YOUR_MAPS_API_KEY_HERE</string>
+   </resources>
+   
+   To obtain Google Maps API key, visit
+   https://developers.google.com/maps/documentation/android/start
+   
+4. In the project directory, run the following command to build the
    app and start it in a connected device:
 
         $ sbt android:start-device
