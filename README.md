@@ -8,6 +8,9 @@ Features to include:
 * History book.
 * Maps.
 
+Permissions:
+* INTERNET: to use Google Maps.
+
 For more information about Sanguo, please go to
   <https://github.com/whily/sanguo>
 
