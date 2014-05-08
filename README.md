@@ -8,8 +8,17 @@ Features to include:
 * History book.
 * Maps.
 
-Permissions:
-* INTERNET: to use Google Maps.
+Permissions below are needed to use Google Maps according to
+[developer guide](https://developers.google.com/maps/documentation/android/start):
+
+* android.permission.INTERNET Used by the API to download map tiles from Google Maps servers.
+* android.permission.ACCESS_NETWORK_STATE Allows the API to check the
+  connection status in order to determine whether data can be
+  downloaded.
+* com.google.android.providers.gsf.permission.READ_GSERVICES Allows
+  the API to access Google web-based services.
+* android.permission.WRITE_EXTERNAL_STORAGE Allows the API to cache
+  map tile data in the device's external storage area.
 
 For more information about Sanguo, please go to
   <https://github.com/whily/sanguo>
@@ -23,6 +32,7 @@ The following tools are needed to build Sanguo from source:
   Note that JDK is preinstalled on Mac OS X and available via package manager
   on many Linux systems. 
 * Android SDK r22.
+* Google Play services r16.
 * Scala (2.10.0)
 * sbt (0.12.4)
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
@@ -43,8 +53,11 @@ To compile/run the code, follow the steps below:
    **lib** which is related to `dx`) to folder
    `$ANDROID_HOME/platform-tools`.
    
-2. Create library `lib` in the project root directory. Copy `maps.jar`
-   of Google API to `lib` directory.
+2. Create library `lib` in the project root directory. Copy
+   `google-play-services.jar` of Google Play services (e.g. the
+   directory is
+   `/opt/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs`
+   in my machine. YMMV) to `lib` directory.
    
 3. In directory `res\values`, create an xml file (e.g. pokey.xml)
    with following content: 

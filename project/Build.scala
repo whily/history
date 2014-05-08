@@ -18,7 +18,13 @@ object General {
   lazy val proguardSettings = inConfig(Android) (Seq (
     useProguard := true,
     proguardOptimizations += "-keep class net.whily.android.sanguo.** { *; }",
-    proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }"
+    proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }",
+    // Following is for Google Play services accordingly to: http://developer.android.com/google/play-services/setup.html
+    proguardOptimizations += "-keep class * extends java.util.ListResourceBundle { protected Object[][] getContents(); }",
+    proguardOptimizations += "-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL;}",
+    proguardOptimizations += "-keepnames @com.google.android.gms.common.annotation.KeepName class *",
+    proguardOptimizations += "-keepclassmembernames class * { @com.google.android.gms.common.annotation.KeepName *; }",
+    proguardOptimizations += "-keepnames class * implements android.os.Parcelable { public static final ** CREATOR; }"
   ))
 
   // Full Android settings
