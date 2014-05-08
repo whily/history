@@ -34,8 +34,7 @@
               android:label="@string/settings" />        
 
     <!-- Following meta data is needed for Google Maps. -->
-    <!--
-    <meta-data
+    <!-- <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" /> -->
     <meta-data

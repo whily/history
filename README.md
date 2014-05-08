@@ -32,7 +32,10 @@ The following tools are needed to build Sanguo from source:
   Note that JDK is preinstalled on Mac OS X and available via package manager
   on many Linux systems. 
 * Android SDK r22.
+* Google Repository r7.
 * Google Play services r16.
+* Android Support Repository r5.
+* Android Support Library r19.0.1.
 * Scala (2.10.0)
 * sbt (0.12.4)
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
@@ -53,11 +56,14 @@ To compile/run the code, follow the steps below:
    **lib** which is related to `dx`) to folder
    `$ANDROID_HOME/platform-tools`.
    
-2. Create library `lib` in the project root directory. Copy
-   `google-play-services.jar` of Google Play services (e.g. the
-   directory is
-   `/opt/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs`
-   in my machine. YMMV) to `lib` directory.
+2. Modify `project/Build.scal` to change the following line according
+   to your Android SDK directory and the version of Google Play
+   services and Android Support Library.
+        
+        resolvers += "Local Maven Repository" at "file:///opt/android-sdk/extras/android/m2repository/",
+        resolvers += "Local Maven Repository" at "file:///opt/android-sdk/extras/google/m2repository/",
+        libraryDependencies += "com.android.support" % "support-v13" % "19.0.1",
+        libraryDependencies += "com.google.android.gms" % "play-services" % "4.3.23",        
    
 3. In directory `res\values`, create an xml file (e.g. pokey.xml)
    with following content: 
