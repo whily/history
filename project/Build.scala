@@ -18,16 +18,7 @@ object General {
   lazy val proguardSettings = inConfig(Android) (Seq (
     useProguard := true,
     proguardOptimizations += "-keep class net.whily.android.sanguo.** { *; }",
-    proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }",
-    // Following is for Google Play services accordingly to: http://developer.android.com/google/play-services/setup.html
-    proguardOptimizations += "-keep class * extends java.util.ListResourceBundle { protected Object[][] getContents(); }",
-    proguardOptimizations += "-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL;}",
-    proguardOptimizations += "-keepnames @com.google.android.gms.common.annotation.KeepName class *",
-    proguardOptimizations += "-keepclassmembernames class * { @com.google.android.gms.common.annotation.KeepName *; }",
-    proguardOptimizations += "-keepnames class * implements android.os.Parcelable { public static final ** CREATOR; }",
-    // Keep Google Maps classes.
-    proguardOptimizations += "-keep class com.google.android.gms.maps.** { *; }",
-    proguardOptimizations += "-keep class com.google.android.gms.R { *; }"
+    proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }"
   ))
 
   // Full Android settings
@@ -39,10 +30,6 @@ object General {
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
-      resolvers += "Local Maven Repository" at "file:///opt/android-sdk/extras/android/m2repository/",
-      resolvers += "Local Maven Repository" at "file:///opt/android-sdk/extras/google/m2repository/",
-      libraryDependencies += "com.android.support" % "support-v13" % "19.0.1",
-      libraryDependencies += "com.google.android.gms" % "play-services" % "4.3.23",
       libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test",
       libraryDependencies += "net.whily" %% "scasci" % "0.0.1-SNAPSHOT",
       libraryDependencies += "net.whily" %% "scaland" % "0.0.1-SNAPSHOT"

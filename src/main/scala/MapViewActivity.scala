@@ -17,6 +17,5 @@ import android.os.Bundle
 class MapViewActivity extends Activity {
   override def onCreate(icicle: Bundle) {
     super.onCreate(icicle)
-    setContentView(R.layout.mapview)
   }
 }
