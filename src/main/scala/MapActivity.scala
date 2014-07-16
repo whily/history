@@ -20,7 +20,7 @@ import android.view.{Menu, MenuItem, MotionEvent, View}
 import android.widget.{ArrayAdapter, LinearLayout}
 import net.whily.scaland.{Render2DActivity, Render2DView, Util}
 
-class MapViewActivity extends Render2DActivity {
+class MapActivity extends Render2DActivity {
   private var bar: ActionBar = null
   
   override def onCreate(icicle: Bundle) { 
