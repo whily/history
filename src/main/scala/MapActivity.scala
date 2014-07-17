@@ -11,37 +11,23 @@
 
 package net.whily.android.sanguo
 
-import scala.collection.mutable
 import android.app.{ActionBar, Activity}
-import android.content.{Intent, Context}
-import android.graphics.{Canvas, Color, Paint}
 import android.os.Bundle
-import android.view.{Menu, MenuItem, MotionEvent, View}
-import android.widget.{ArrayAdapter, LinearLayout}
-import net.whily.scaland.{Render2DActivity, Render2DView, Util}
+import android.view.View
+import net.whily.scaland.Util
 
-class MapActivity extends Render2DActivity {
+class MapActivity extends Activity {
   private var bar: ActionBar = null
   
   override def onCreate(icicle: Bundle) { 
     super.onCreate(icicle)
 
-    renderView = new ShowView(this)
-    setContentView(renderView)  
+    setContentView(R.layout.map)  
     setTitle("")
     
     bar = getActionBar
     bar.setHomeButtonEnabled(true)
 
     Util.requestImmersiveMode(this)
-  }
-}
-
-class ShowView(context: Context) extends Render2DView(context) with Runnable {
-  val paint = new Paint()
-  paint.setAntiAlias(true)
-  paint.setStyle(Paint.Style.FILL)
-
-  def drawOn(canvas: Canvas) {
   }
 }
