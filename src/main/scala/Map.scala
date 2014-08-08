@@ -13,16 +13,21 @@ package net.whily.android.sanguo
 
 import android.content.Context
 import android.graphics.{Bitmap, BitmapFactory, Canvas, Color, Paint}
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
-class Map(context: Context) extends View(context) {
+class Map(context: Context, attrs: AttributeSet) extends View(context, attrs) {
+  // It seems that extension of View should be done by extending View(context, attrs)
+  // instead of extending View(context) directly.
+
   private val map = BitmapFactory.decodeResource(getResources(), R.drawable.sanguo)
   private val paint = new Paint()
   paint.setAntiAlias(true)
   paint.setStyle(Paint.Style.FILL)
 
   override protected def onDraw(canvas: Canvas) {
+    canvas.drawColor(Color.GRAY)
     canvas.drawBitmap(map, 0, 0, paint)
   }
 }

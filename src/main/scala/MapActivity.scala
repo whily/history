@@ -14,14 +14,17 @@ package net.whily.android.sanguo
 import android.app.{ActionBar, Activity}
 import android.os.Bundle
 import android.view.View
+import android.util.Log
 import net.whily.scaland.Util
 
 class MapActivity extends Activity {
   private var bar: ActionBar = null
+  private val tag = "MapActivity"
   
   override def onCreate(icicle: Bundle) { 
     super.onCreate(icicle)
 
+    Log.d(tag, "onCreate")
     setContentView(R.layout.map)  
     setTitle("")
     
