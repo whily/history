@@ -68,7 +68,7 @@ ConvertToActionBarIcon() {
 mkdir -p res/drawable-ldpi/ res/drawable-mdpi/ res/drawable-mdpi/ res/drawable-hdpi/ res/drawable-xhdpi/ res/drawable-xxhdpi/
 
 cd art/
-ConvertToLauncherIcon ic_launcher_sanguo.svg
+ConvertToLauncherIcon ic_launcher_history.svg
 # for f in reverse; do
   # ConvertToActionBarIcon ic_menu_${f}_holo_light.svg
 #done

@@ -9,7 +9,7 @@
  * Copyright (C) 2014 Yujian Zhang
  */
 
-package net.whily.android.sanguo
+package net.whily.android.history
 
 import android.content.Context
 import android.graphics.{Bitmap, BitmapFactory, Canvas, Color, Paint}
@@ -21,7 +21,7 @@ class Map(context: Context, attrs: AttributeSet) extends View(context, attrs) {
   // It seems that extension of View should be done by extending View(context, attrs)
   // instead of extending View(context) directly.
 
-  private val map = BitmapFactory.decodeResource(getResources(), R.drawable.sanguo)
+  private val map = BitmapFactory.decodeResource(getResources(), R.drawable.china)
   private val paint = new Paint()
   paint.setAntiAlias(true)
   paint.setStyle(Paint.Style.FILL)

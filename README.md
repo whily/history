@@ -1,5 +1,5 @@
-Sanguo
-======
+History
+=======
 
 An Android app to read Chinese history books (currently Sanguozhi/三国志), view 
 corresponding maps, and more.
@@ -9,13 +9,13 @@ Features to include:
 * History book.
 * Maps.
 
-For more information about Sanguo, please go to
-  <https://github.com/whily/sanguo>
+For more information about History, please go to
+  <https://github.com/whily/history>
 
 Development
 -----------
 
-The following tools are needed to build Sanguo from source:
+The following tools are needed to build History from source:
 
 * JDK version 6/7 from <http://www.java.com> if Java is not available. 
   Note that JDK is preinstalled on Mac OS X and available via package manager

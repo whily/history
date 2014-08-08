@@ -9,7 +9,7 @@
  * Copyright (C) 2014 Yujian Zhang
  */
 
-package net.whily.android.sanguo
+package net.whily.android.history
 
 import android.app.{ActionBar, Activity}
 import android.os.Bundle

@@ -6,7 +6,7 @@ import AndroidKeys._
 object General {
   // Some basic configuration
   val settings = Defaults.defaultSettings ++ Seq (
-    name := "sanguo",
+    name := "history",
     version := "0.0.1",
     versionCode := 1,
     scalaVersion := "2.10.0",
@@ -17,7 +17,7 @@ object General {
   // Default Proguard settings
   lazy val proguardSettings = inConfig(Android) (Seq (
     useProguard := true,
-    proguardOptimizations += "-keep class net.whily.android.sanguo.** { *; }",
+    proguardOptimizations += "-keep class net.whily.android.history.** { *; }",
     proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }"
   ))
 
@@ -50,7 +50,7 @@ object AndroidBuild extends Build {
                AndroidEclipseDefaults.settings ++
                AndroidTest.androidSettings ++
                General.proguardSettings ++ Seq (
-      name := "sanguoTests"
+      name := "historyTests"
     )
   ) dependsOn main
 }
