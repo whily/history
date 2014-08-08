@@ -1,7 +1,8 @@
 Sanguo
 ======
 
-An Android app to read Sanguozhi (三国志), view corresponding maps, and more.
+An Android app to read Chinese history books (currently Sanguozhi/三国志), view 
+corresponding maps, and more.
 
 Features to include:
 
