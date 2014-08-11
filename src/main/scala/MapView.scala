@@ -17,7 +17,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
-class Map(context: Context, attrs: AttributeSet) extends View(context, attrs) {
+class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs) {
   // It seems that extension of View should be done by extending View(context, attrs)
   // instead of extending View(context) directly.
 
