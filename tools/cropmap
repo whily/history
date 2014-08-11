@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Download 1:10m Natural Earth II with Shaded Relief, Water, and Drainages from 
+#   http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/ 
+#   Direct link: http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip
+
+# Map for Three Kingdoms
+convert NE2_HR_LC_SR_W_DR.tif -crop 2048x2048+16650+2450 china.png
+
+# Map for Tang dynasty.
+# convert NE2_HR_LC_SR_W_DR.tif -crop 6144x3072+13500+1500 china.png
