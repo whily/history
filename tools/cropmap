@@ -3,8 +3,24 @@
 #   http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/ 
 #   Direct link: http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip
 
-# Map for Three Kingdoms
-convert NE2_HR_LC_SR_W_DR.tif -crop 2048x2048+16650+2450 china.png
+# Crop the tile maps. For definitions of such tiles, refer to src/main/scala/TileMap.scala.
 
-# Map for Tang dynasty.
+# Map for Three Kingdoms
+# convert NE2_HR_LC_SR_W_DR.tif -crop 2048x2048+16650+2450 china.png
+mapdir=../res/drawable
+tile=256
+lat=8
+lon=8
+west=16650
+north=2450
+for (( i=0; i<$lon; i++ ))
+do
+    for (( j=0; j<$lat; j++ ))
+    do 
+        convert NE2_HR_LC_SR_W_DR.tif -crop ${tile}x${tile}+$((west+i*tile))+$((north+j*tile)) $mapdir/map_0_${i}_${j}.png
+    done
+done
+
+# Map for Tang dynasty. We may eventually use this big map. 
+# But for now, let's save the space.
 # convert NE2_HR_LC_SR_W_DR.tif -crop 6144x3072+13500+1500 china.png
