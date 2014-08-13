@@ -26,19 +26,22 @@ The following tools are needed to build History from source:
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
   to generate icons.
 
-# Generate the icons. In project directory, run following command:
+### Generate the icons
+
+In project directory, run following command:
+
         $ ./genart           
 
-# Download the maps
+### Download the maps
 
 Download 1:10m Natural Earth II with Shaded Relief, Water, and Drainages from 
-<http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/>
+<http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/>.
 Direct link is: <http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip>
 
 Unzip `NE2_HR_LC_SR_W_DR.tif` into tools directory. In the directory,
 run script `cropmap`, which automatically crop the tile maps.
 
-# Build the code
+### Build the code
 
 The library dependencies include
 [scasci](https://github.com/whily/scasci) and
@@ -60,8 +63,7 @@ To compile/run the code, follow the steps below:
 
         $ sbt android:start-device
         
-Testing
--------
+### Testing
 
 There are two types of testing can be performed:
 
