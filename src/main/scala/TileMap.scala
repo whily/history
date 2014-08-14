@@ -115,7 +115,14 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("许都", 34.035803, 113.852478),    // To be confirmed
           Place("寿春", 32.0, 116.5),             // Estimated
           Place("官渡", 34.720967, 114.014228),    // To be confirmed
+          Place("乌巢", 35.3, 114.2),    // To be confirmed
           Place("襄阳", 32.066667, 112.083333),    // To be confirmed
+          Place("南阳", 33.004722, 112.5275),    // To be confirmed
+          Place("陈留", 34.8, 114.3),    // To be confirmed
+          Place("鄄城", 35.566667, 115.5),    // To be confirmed
+          Place("下邳", 34.316667, 117.95),    // To be confirmed
+          Place("房陵", 32.1, 110.6),    // To be confirmed
+          Place("上庸", 32.316667, 110.15),    // To be confirmed
 
           Place("成都", 30.658611, 104.064722),   // To be confirmed
           Place("汉中", 33.066667, 107.016667),    // To be confirmed
@@ -125,11 +132,18 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("绵竹", 31.333333, 104.2),    // To be confirmed
           Place("阴平", 32.916667, 104.766667),    // To be confirmed
           Place("剑阁", 31.285278, 105.523611),    // To be confirmed
+          Place("永安", 31.0175, 109.465),    // To be confirmed
 
           Place("建业", 32.05, 118.766667),    // To be confirmed
           Place("江陵", 30.133333, 112.5) ,       // To be confirmed
           Place("濡须", 31.678333, 117.735278),     // To be confirmed
           Place("赤壁", 29.716667, 113.9),    // To be confirmed
+          Place("吴", 31.3, 120.6),    // To be confirmed
+          Place("庐陵", 27.133333, 115),    // To be confirmed
+          Place("长沙", 28.196111, 112.972222),    // To be confirmed
+          Place("桂阳", 25.8, 113.05),    // To be confirmed
+          Place("零陵", 25.616667, 110.666667),    // To be confirmed
+          Place("江夏", 30.554722, 114.312778),    // To be confirmed
           Place("夷陵", 30.766667, 111.316667)    // To be confirmed
     )
 }
