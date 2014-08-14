@@ -6,18 +6,19 @@
 # Crop the tile maps. For definitions of such tiles, refer to src/main/scala/TileMap.scala.
 
 # Map for Three Kingdoms
-# convert NE2_HR_LC_SR_W_DR.tif -crop 2048x2048+16650+2450 china.png
 mapdir=../res/drawable
 tile=256
 lat=8
 lon=8
 west=16650
 north=2450
+convert NE2_HR_LC_SR_W_DR.tif -crop $((lon*tile))x$((lat*tile))+${west}+${north} china.png
+
 for (( i=0; i<$lon; i++ ))
 do
     for (( j=0; j<$lat; j++ ))
     do 
-        convert NE2_HR_LC_SR_W_DR.tif -crop ${tile}x${tile}+$((west+i*tile))+$((north+j*tile)) $mapdir/map_0_${i}_${j}.png
+        convert china.png -crop ${tile}x${tile}+$((west+i*tile))+$((north+j*tile)) $mapdir/map_0_${i}_${j}.png
     done
 done
 
