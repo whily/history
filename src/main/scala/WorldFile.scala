@@ -25,6 +25,18 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
   /** Return the latitude for pixel with y-cooridnate as y. */
   def latitude(y: Double) = E * y + F
 
+  /** Return longitude difference given pixel difference in x-coordinate. */
+  def lonDiff(pixelDiff: Double) = A * pixelDiff
+
+  /** Return latitude difference given pixel differnce in y-coordinate. */
+  def latDiff(pixelDiff: Double) = E * pixelDiff
+
+  /** Return x-coordiante difference given longitude difference. */
+  def xDiff(lonDiff: Double) = lonDiff / A
+
+  /** Return y-coordinate difference given latitude differnce. */
+  def yDiff(latDiff: Double) = latDiff / E
+
   /** Return the screen X coordinate for a pixel X coordinate in the map file.
     * 
     * @param refLon     longitude of the reference point
