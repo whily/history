@@ -42,9 +42,15 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     * @param refLon     longitude of the reference point
     * @param refScreenX screen X coordinat of the reference point
     * @param pixelX     pixel X coordinate in the map file
+    * @param zoomLevel  zoom level
     */
-  def screenX(refLon: Double, refScreenX: Int, pixelX: Int) =
-    (refScreenX + pixelX + (C - refLon) / A).asInstanceOf[Float]
+  def screenX(refLon: Double, refScreenX: Int, pixelX: Int, zoomLevel: Int) = {
+    val scalingFactor = zoomLevel match {
+      case -1 => 2
+      case _  => 1
+    }
+    (refScreenX + scalingFactor * (pixelX + (C - refLon) / A)).asInstanceOf[Float]
+  }
 
 
   /** Return the screen Y coordinate for a pixel Y coordinate in the map file.
@@ -52,7 +58,13 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     * @param refLat     latitude of the reference point
     * @param refScreenY screen Y coordinat of the reference point
     * @param pixelY     pixel Y coordinate in the map file
+    * @param pixelX     pixel X coordinate in the map file
     */
-  def screenY(refLat: Double, refScreenY: Int, pixelY: Int) =
-    (refScreenY + pixelY + (F - refLat) / E).asInstanceOf[Float]
+  def screenY(refLat: Double, refScreenY: Int, pixelY: Int, zoomLevel: Int) = {
+    val scalingFactor = zoomLevel match {
+      case -1 => 2
+      case _  => 1
+    }
+    (refScreenY + scalingFactor * (pixelY + (F - refLat) / E)).asInstanceOf[Float]
+  }
 }
