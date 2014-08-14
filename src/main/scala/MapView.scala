@@ -36,6 +36,8 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   private var centerLat: Double = 30.0
   private var centerLon: Double = 110.0
 
+  private var zoomLevel = 0
+
   private val paint = new Paint()
   paint.setAntiAlias(true)
   paint.setStyle(Paint.Style.FILL)
@@ -59,15 +61,22 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
 
       case MotionEvent.ACTION_MOVE =>
         if (touchState == TouchState.DRAG) {
-          centerLon -= map.lonDiff((event.getX() - prevX))
-          centerLat -= map.latDiff((event.getY() - prevY))
+          val scalingFactor = math.pow(2.0, zoomLevel)
+          centerLon -= scalingFactor * map.lonDiff((event.getX() - prevX))
+          centerLat -= scalingFactor * map.latDiff((event.getY() - prevY))
         } else if (touchState == TouchState.ZOOM) {
           val newDist = spacing(event)
           if (newDist > 10f) {
             if (newDist > oldDist) {
               // Zoom in.
+              if (zoomLevel == 0) {
+                zoomLevel = -1
+              }
             } else {
               // Zoom out.
+              if (zoomLevel == -1) {
+                zoomLevel = 0
+              }
             }
           }          
         }
@@ -83,7 +92,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     if (map == null) {
       map = new TileMap(context, 0)
     }
-    map.draw(canvas, paint, centerLon, centerLat)
+    map.draw(canvas, paint, centerLon, centerLat, zoomLevel)
   }
 
   // Calculate how far two fingers are.

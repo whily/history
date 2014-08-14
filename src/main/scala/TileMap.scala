@@ -55,7 +55,7 @@ class TileMap(context: Context, zoomLevel: Int) {
 
   Log.d("TileMap", "Initialize")
 
-  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double) {
+  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double, zoomLevel: Int) {
     // Ignore source/destination density by using RectF version of drawBitmap.
 
     val canvasWidth = canvas.getWidth()
@@ -70,13 +70,21 @@ class TileMap(context: Context, zoomLevel: Int) {
         // For each tile, find its corresponding Rect for the canvas. If
         // the Rect intersects with the canvas Rect, draw the tile.
         val index = i + j * nTileX
-        val left = Math.floor(worldFile.screenX(centerLon, canvasWidth / 2, mapLeft + i * tileSize)).asInstanceOf[Int]
-        val top = Math.floor(worldFile.screenY(centerLat, canvasHeight / 2, mapTop + j * tileSize)).asInstanceOf[Int]
-        val tileRect = new RectF(left, top, left + tileSize, top + tileSize)
+        val left = Math.floor(worldFile.screenX(centerLon, canvasWidth / 2, mapLeft + i * tileSize, zoomLevel)).asInstanceOf[Int]
+        val top = Math.floor(worldFile.screenY(centerLat, canvasHeight / 2, mapTop + j * tileSize, zoomLevel)).asInstanceOf[Int]
+        val displayTileSize = zoomLevel match {
+          case -1 => 2 * tileSize
+          case _  => tileSize
+        }
+        val tileRect = new RectF(left, top, left + displayTileSize, top + displayTileSize)
         if (RectF.intersects(tileRect, canvasRect)) {
           if (maps(index) == null) {
+            val tileZoomLevel = zoomLevel match {
+              case -1 => 0
+              case  _ => zoomLevel
+            }
             maps(index) = BitmapFactory.decodeResource(context.getResources(),
-              Util.getDrawableId(context, "map_" + zoomLevel + "_" + i + "_" + j))
+              Util.getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
           }
           canvas.drawBitmap(maps(index), null, tileRect, paint)
         }
@@ -84,8 +92,9 @@ class TileMap(context: Context, zoomLevel: Int) {
     }
 
     for (place <- places) {
-      val x = canvasWidth / 2 + worldFile.xDiff(place.lon - centerLon).asInstanceOf[Float]
-      val y = canvasHeight / 2 + worldFile.yDiff(place.lat - centerLat).asInstanceOf[Float]
+      val scalingFactor = math.pow(2.0, -zoomLevel)
+      val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(place.lon - centerLon)).asInstanceOf[Float]
+      val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(place.lat - centerLat)).asInstanceOf[Float]
       canvas.drawCircle(x, y, 8f, paint)
       canvas.drawText(place.name, x + 10, y, paint)
     }
@@ -114,12 +123,12 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("葭萌", 32.433333, 105.816667),    // To be confirmed
           Place("雒城", 30.99, 104.25),    // To be confirmed
           Place("绵竹", 31.333333, 104.2),    // To be confirmed
-          Place("阴平", 32.916667, 104.766667  ),    // To be confirmed
+          Place("阴平", 32.916667, 104.766667),    // To be confirmed
           Place("剑阁", 31.285278, 105.523611),    // To be confirmed
 
           Place("建业", 32.05, 118.766667),    // To be confirmed
           Place("江陵", 30.133333, 112.5) ,       // To be confirmed
-          Place("濡须", 31.678333,117.735278),     // To be confirmed
+          Place("濡须", 31.678333, 117.735278),     // To be confirmed
           Place("赤壁", 29.716667, 113.9),    // To be confirmed
           Place("夷陵", 30.766667, 111.316667)    // To be confirmed
     )
