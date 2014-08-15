@@ -73,16 +73,14 @@ class TileMap(context: Context, zoomLevel: Int) {
         val left = Math.floor(worldFile.screenX(centerLon, canvasWidth / 2, mapLeft + i * tileSize, zoomLevel)).asInstanceOf[Int]
         val top = Math.floor(worldFile.screenY(centerLat, canvasHeight / 2, mapTop + j * tileSize, zoomLevel)).asInstanceOf[Int]
         val displayTileSize = zoomLevel match {
+          case -2 => 4 * tileSize
           case -1 => 2 * tileSize
           case _  => tileSize
         }
         val tileRect = new RectF(left, top, left + displayTileSize, top + displayTileSize)
         if (RectF.intersects(tileRect, canvasRect)) {
           if (maps(index) == null) {
-            val tileZoomLevel = zoomLevel match {
-              case -1 => 0
-              case  _ => zoomLevel
-            }
+            val tileZoomLevel = if (zoomLevel < 0) 0 else zoomLevel
             maps(index) = BitmapFactory.decodeResource(context.getResources(),
               Util.getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
           }
@@ -111,8 +109,12 @@ class TileMap(context: Context, zoomLevel: Int) {
   private val places = 
     Array(Place("洛阳", 34.631514, 112.454681),   // To be confirmed
           Place("长安", 34.266667, 108.9),        // To be confirmed
+          Place("武關", 33.71,110.35),        // To be confirmed
+          Place("函谷關", 34.519467, 110.869081),        // To be confirmed
+          Place("萧關", 36.016667, 106.25),        // To be confirmed
+          Place("大散關", 34.35, 107.366667),        // To be confirmed
           Place("邺", 36.333333, 114.616667),      // Should be 20 km sw of the county.
-          Place("许都", 34.035803, 113.852478),    // To be confirmed
+          Place("许", 34.035803, 113.852478),    // To be confirmed
           Place("寿春", 32.0, 116.5),             // Estimated
           Place("官渡", 34.720967, 114.014228),    // To be confirmed
           Place("乌巢", 35.3, 114.2),    // To be confirmed
@@ -123,9 +125,15 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("下邳", 34.316667, 117.95),    // To be confirmed
           Place("房陵", 32.1, 110.6),    // To be confirmed
           Place("上庸", 32.316667, 110.15),    // To be confirmed
+          Place("潼关", 34.486389, 110.263611),    // To be confirmed
+          Place("合肥", 31.85, 117.266667),    // To be confirmed
+          Place("濮阳", 35.75, 115.016667),    // To be confirmed
+          Place("东阿", 36.333333, 116.25),    // To be confirmed
+          Place("范", 35.85, 115.5),    // To be confirmed
 
           Place("成都", 30.658611, 104.064722),   // To be confirmed
           Place("汉中", 33.066667, 107.016667),    // To be confirmed
+          Place("阳平關", 32.961353, 106.055392),        // To be confirmed
           Place("涪城", 31.466667, 104.683333),    // To be confirmed
           Place("葭萌", 32.433333, 105.816667),    // To be confirmed
           Place("雒城", 30.99, 104.25),    // To be confirmed
@@ -137,7 +145,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("建业", 32.05, 118.766667),    // To be confirmed
           Place("江陵", 30.133333, 112.5) ,       // To be confirmed
           Place("濡须", 31.678333, 117.735278),     // To be confirmed
-          Place("赤壁", 29.716667, 113.9),    // To be confirmed
+          Place("赤壁", 29.72647, 113.93091),    // To be confirmed
           Place("吴", 31.3, 120.6),    // To be confirmed
           Place("庐陵", 27.133333, 115),    // To be confirmed
           Place("长沙", 28.196111, 112.972222),    // To be confirmed

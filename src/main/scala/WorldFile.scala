@@ -39,6 +39,10 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
 
   /** Return the screen X coordinate for a pixel X coordinate in the map file.
     * 
+    * The calculation is based on the following formula (assuming zoom level = 0):
+    *   (refLon - lon) / (refScreenX - screenX) = A
+    * where lon = A * pixelX + c
+    * 
     * @param refLon     longitude of the reference point
     * @param refScreenX screen X coordinat of the reference point
     * @param pixelX     pixel X coordinate in the map file
@@ -46,6 +50,7 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     */
   def screenX(refLon: Double, refScreenX: Int, pixelX: Int, zoomLevel: Int) = {
     val scalingFactor = zoomLevel match {
+      case -2 => 4
       case -1 => 2
       case _  => 1
     }
@@ -55,6 +60,8 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
 
   /** Return the screen Y coordinate for a pixel Y coordinate in the map file.
     * 
+    * See docstring of screenX for algorithm.
+    * 
     * @param refLat     latitude of the reference point
     * @param refScreenY screen Y coordinat of the reference point
     * @param pixelY     pixel Y coordinate in the map file
@@ -62,6 +69,7 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     */
   def screenY(refLat: Double, refScreenY: Int, pixelY: Int, zoomLevel: Int) = {
     val scalingFactor = zoomLevel match {
+      case -2 => 4
       case -1 => 2
       case _  => 1
     }

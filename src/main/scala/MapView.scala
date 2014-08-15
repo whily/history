@@ -37,6 +37,11 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   private var centerLon: Double = 110.0
 
   private var zoomLevel = 0
+  private val minZoomLevel = -2
+  private val maxZoomLevel = 0
+
+  private val dpi = Math.min(context.getResources().getDisplayMetrics().xdpi,
+                             context.getResources().getDisplayMetrics().ydpi)
 
   private val paint = new Paint()
   paint.setAntiAlias(true)
@@ -69,14 +74,10 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
           if (newDist > 10f) {
             if (newDist > oldDist) {
               // Zoom in.
-              if (zoomLevel == 0) {
-                zoomLevel = -1
-              }
+              zoomLevel = Math.max(minZoomLevel, zoomLevel - 1)
             } else {
               // Zoom out.
-              if (zoomLevel == -1) {
-                zoomLevel = 0
-              }
+              zoomLevel = Math.min(maxZoomLevel, zoomLevel + 1)
             }
           }          
         }
