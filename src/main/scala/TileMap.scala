@@ -129,6 +129,12 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("东阿", 36.333333, 116.25),    // To be confirmed
           Place("范", 35.85, 115.5),    // To be confirmed
 
+          // 司隸
+          Place("河内郡", 35.1, 113.4),    // 懷縣/武陟县 To be confirmed
+          Place("河東郡", 35.138333, 111.220833),    // 安邑/夏县 To be confirmed
+          Place("左馮翊", 34.506, 109.051),    // 高陵縣/高陵縣 To be confirmed
+          Place("右扶風", 34.2995, 108.4905),    // 槐里县/兴平市 To be confirmed
+
           // 冀州
           Place("渤海郡(南皮)", 38.033333, 116.7),    // 南皮/南皮县 To be confirmed
 
