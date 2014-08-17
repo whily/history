@@ -15,9 +15,9 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.{Canvas, Color, Paint}
 import android.util.AttributeSet
-import android.view.MotionEvent
+import android.view.{MotionEvent, ScaleGestureDetector, View}
 import android.util.FloatMath
-import android.view.View
+import net.whily.scaland.Util
 
 class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs) {
   // It seems that extension of View should be done by extending View(context, attrs)
@@ -27,11 +27,10 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
 
   private var prevX = 0.0f
   private var prevY = 0.0f
-  private var oldDist = 0.0f
-  object TouchState extends Enumeration { 
-    val NONE, DRAG, ZOOM = Value 
-  }
-  private var touchState = TouchState.NONE
+  private var drag = false
+
+  // Detect pinch gesture
+  private val scaleDetector = new ScaleGestureDetector(context, new ScaleListener())
 
   private var centerLat: Double = 30.0
   private var centerLon: Double = 110.0
@@ -53,37 +52,24 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
       case MotionEvent.ACTION_DOWN =>
         prevX = event.getX()
         prevY = event.getY()
-        touchState = TouchState.DRAG
-       
-      case MotionEvent.ACTION_UP | MotionEvent.ACTION_POINTER_UP =>
-        touchState = TouchState.NONE
-      
-      case MotionEvent.ACTION_POINTER_DOWN =>
-        oldDist = spacing(event);
-        if (oldDist > 10f) {
-          touchState = TouchState.ZOOM
-        }  
+        drag = true
 
       case MotionEvent.ACTION_MOVE =>
-        if (touchState == TouchState.DRAG) {
+        if (drag) {
+          // For the map scaling factor.
           val scalingFactor = math.pow(2.0, zoomLevel)
           centerLon -= scalingFactor * map.lonDiff((event.getX() - prevX))
           centerLat -= scalingFactor * map.latDiff((event.getY() - prevY))
-        } else if (touchState == TouchState.ZOOM) {
-          val newDist = spacing(event)
-          if (newDist > 10f) {
-            if (newDist > oldDist) {
-              // Zoom in.
-              zoomLevel = Math.max(minZoomLevel, zoomLevel - 1)
-            } else {
-              // Zoom out.
-              zoomLevel = Math.min(maxZoomLevel, zoomLevel + 1)
-            }
-          }          
+          invalidate()
         }
-        invalidate()
+
+      case MotionEvent.ACTION_UP =>
+        drag = false
+
+      case _ => {}
     }
 
+    scaleDetector.onTouchEvent(event)
     true
   }  
 
@@ -96,11 +82,30 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     map.draw(canvas, paint, centerLon, centerLat, zoomLevel)
   }
 
-  // Calculate how far two fingers are.
-  // From http://www.zdnet.com/blog/burnette/how-to-use-multi-touch-in-android-2-part-6-implementing-the-pinch-zoom-gesture/1847
-  private def spacing(event: MotionEvent): Float = {
-    val x = event.getX(0) - event.getX(1)
-    val y = event.getY(0) - event.getY(1)
-    FloatMath.sqrt(x * x + y * y)
-  }  
+  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    private var scaleFactor = 1f
+
+    override def onScaleBegin(detector: ScaleGestureDetector): Boolean = {
+      scaleFactor = 1f
+      true
+    }
+    override def onScale(detector: ScaleGestureDetector): Boolean = {
+      // Note that this can be called multiple times during one pinch operation. So accummulate
+      // the actual scale factor.
+      scaleFactor *= detector.getScaleFactor()
+      true
+    }
+
+    override def onScaleEnd(detector: ScaleGestureDetector) {
+      scaleFactor *= detector.getScaleFactor()
+      if (scaleFactor > 1.0f) {
+        // Zoom in
+        zoomLevel = Math.max(minZoomLevel, zoomLevel - 1)
+      } else {
+        // Zoom out
+        zoomLevel = Math.min(maxZoomLevel, zoomLevel + 1)
+      }
+      invalidate()
+    }
+  }
 }
