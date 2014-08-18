@@ -59,6 +59,8 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
           val scalingFactor = math.pow(2.0, zoomLevel)
           centerLon -= scalingFactor * map.lonDiff((event.getX() - prevX))
           centerLat -= scalingFactor * map.latDiff((event.getY() - prevY))
+          prevX = event.getX()
+          prevY = event.getY()
           invalidate()
         }
 
