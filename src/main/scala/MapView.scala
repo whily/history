@@ -27,7 +27,6 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
 
   private var prevX = 0.0f
   private var prevY = 0.0f
-  private var drag = false
 
   // Detect pinch gesture
   private val scaleDetector = new ScaleGestureDetector(context, new ScaleListener())
@@ -52,19 +51,16 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
       case MotionEvent.ACTION_DOWN =>
         prevX = event.getX()
         prevY = event.getY()
-        drag = true
 
       case MotionEvent.ACTION_MOVE =>
-        if (drag) {
+        // Only move if ScaleDetector is not processing a gesture.
+        if (!scaleDetector.isInProgress()) {
           // For the map scaling factor.
           val scalingFactor = math.pow(2.0, zoomLevel)
           centerLon -= scalingFactor * map.lonDiff((event.getX() - prevX))
           centerLat -= scalingFactor * map.latDiff((event.getY() - prevY))
           invalidate()
         }
-
-      case MotionEvent.ACTION_UP =>
-        drag = false
 
       case _ => {}
     }
