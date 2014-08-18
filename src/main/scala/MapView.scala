@@ -34,7 +34,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   private var centerLat: Double = 30.0
   private var centerLon: Double = 110.0
 
-  private var zoomLevel = 0
+  private var screenZoomLevel = 0
   private val minZoomLevel = -2
   private val maxZoomLevel = 0
 
@@ -56,7 +56,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
         // Only move if ScaleDetector is not processing a gesture.
         if (!scaleDetector.isInProgress()) {
           // For the map scaling factor.
-          val scalingFactor = math.pow(2.0, zoomLevel)
+          val scalingFactor = math.pow(2.0, screenZoomLevel)
           centerLon -= scalingFactor * map.lonDiff((event.getX() - prevX))
           centerLat -= scalingFactor * map.latDiff((event.getY() - prevY))
           prevX = event.getX()
@@ -77,7 +77,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     if (map == null) {
       map = new TileMap(context, 0)
     }
-    map.draw(canvas, paint, centerLon, centerLat, zoomLevel)
+    map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel)
   }
 
   private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -98,10 +98,10 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
       scaleFactor *= detector.getScaleFactor()
       if (scaleFactor > 1.0f) {
         // Zoom in
-        zoomLevel = Math.max(minZoomLevel, zoomLevel - 1)
+        screenZoomLevel = Math.max(minZoomLevel, screenZoomLevel - 1)
       } else {
         // Zoom out
-        zoomLevel = Math.min(maxZoomLevel, zoomLevel + 1)
+        screenZoomLevel = Math.min(maxZoomLevel, screenZoomLevel + 1)
       }
       invalidate()
     }

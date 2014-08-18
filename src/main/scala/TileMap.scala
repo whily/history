@@ -55,7 +55,8 @@ class TileMap(context: Context, zoomLevel: Int) {
 
   Log.d("TileMap", "Initialize")
 
-  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double, zoomLevel: Int) {
+  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double, 
+           screenZoomLevel: Int) {
     // Ignore source/destination density by using RectF version of drawBitmap.
 
     val canvasWidth = canvas.getWidth()
@@ -70,9 +71,9 @@ class TileMap(context: Context, zoomLevel: Int) {
         // For each tile, find its corresponding Rect for the canvas. If
         // the Rect intersects with the canvas Rect, draw the tile.
         val index = i + j * nTileX
-        val left = Math.floor(worldFile.screenX(centerLon, canvasWidth / 2, mapLeft + i * tileSize, zoomLevel)).asInstanceOf[Int]
-        val top = Math.floor(worldFile.screenY(centerLat, canvasHeight / 2, mapTop + j * tileSize, zoomLevel)).asInstanceOf[Int]
-        val displayTileSize = zoomLevel match {
+        val left = Math.floor(worldFile.screenX(centerLon, canvasWidth / 2, mapLeft + i * tileSize, screenZoomLevel)).asInstanceOf[Int]
+        val top = Math.floor(worldFile.screenY(centerLat, canvasHeight / 2, mapTop + j * tileSize, screenZoomLevel)).asInstanceOf[Int]
+        val displayTileSize = screenZoomLevel match {
           case -2 => 4 * tileSize
           case -1 => 2 * tileSize
           case _  => tileSize
@@ -80,7 +81,7 @@ class TileMap(context: Context, zoomLevel: Int) {
         val tileRect = new RectF(left, top, left + displayTileSize, top + displayTileSize)
         if (RectF.intersects(tileRect, canvasRect)) {
           if (maps(index) == null) {
-            val tileZoomLevel = if (zoomLevel < 0) 0 else zoomLevel
+            val tileZoomLevel = if (screenZoomLevel < 0) 0 else screenZoomLevel
             maps(index) = BitmapFactory.decodeResource(context.getResources(),
               Util.getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
           }
@@ -90,7 +91,7 @@ class TileMap(context: Context, zoomLevel: Int) {
     }
 
     for (place <- places) {
-      val scalingFactor = math.pow(2.0, -zoomLevel)
+      val scalingFactor = math.pow(2.0, -screenZoomLevel)
       val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(place.lon - centerLon)).asInstanceOf[Float]
       val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(place.lat - centerLat)).asInstanceOf[Float]
       canvas.drawCircle(x, y, 8f, paint)

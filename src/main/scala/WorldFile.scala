@@ -43,13 +43,13 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     *   (refLon - lon) / (refScreenX - screenX) = A
     * where lon = A * pixelX + c
     * 
-    * @param refLon     longitude of the reference point
-    * @param refScreenX screen X coordinat of the reference point
-    * @param pixelX     pixel X coordinate in the map file
-    * @param zoomLevel  zoom level
+    * @param refLon          longitude of the reference point
+    * @param refScreenX      screen X coordinat of the reference point
+    * @param pixelX          pixel X coordinate in the map file
+    * @param screenZoomLevel screen zoom level
     */
-  def screenX(refLon: Double, refScreenX: Int, pixelX: Int, zoomLevel: Int) = {
-    val scalingFactor = zoomLevel match {
+  def screenX(refLon: Double, refScreenX: Int, pixelX: Int, screenZoomLevel: Int) = {
+    val scalingFactor = screenZoomLevel match {
       case -2 => 4
       case -1 => 2
       case _  => 1
@@ -62,13 +62,14 @@ class WorldFile(A: Double, E: Double, C: Double, F: Double) {
     * 
     * See docstring of screenX for algorithm.
     * 
-    * @param refLat     latitude of the reference point
-    * @param refScreenY screen Y coordinat of the reference point
-    * @param pixelY     pixel Y coordinate in the map file
-    * @param pixelX     pixel X coordinate in the map file
+    * @param refLat          latitude of the reference point
+    * @param refScreenY      screen Y coordinat of the reference point
+    * @param pixelY          pixel Y coordinate in the map file
+    * @param pixelX          pixel X coordinate in the map file
+    * @param screenZoomLevel screen zoom level
     */
-  def screenY(refLat: Double, refScreenY: Int, pixelY: Int, zoomLevel: Int) = {
-    val scalingFactor = zoomLevel match {
+  def screenY(refLat: Double, refScreenY: Int, pixelY: Int, screenZoomLevel: Int) = {
+    val scalingFactor = screenZoomLevel match {
       case -2 => 4
       case -1 => 2
       case _  => 1
