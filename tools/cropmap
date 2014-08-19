@@ -1,18 +1,28 @@
 #!/usr/bin/env bash
-# Download 1:10m Natural Earth II with Shaded Relief, Water, and Drainages from 
-#   http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/ 
-#   Direct link: http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip
-
 # Crop the tile maps. For definitions of such tiles, refer to src/main/scala/TileMap.scala.
+# See README.md for how to download maps.
 
-# Map for Three Kingdoms
+### Map for Three Kingdoms
 mapdir=../res/drawable
 tile=256
-lat=8
-lon=8
-west=16650
-north=2450
-convert NE2_HR_LC_SR_W_DR.tif -crop $((lon*tile))x$((lat*tile))+${west}+${north} china.png
+
+## Only enable one set of parameters below
+
+# Parameter set for Natural Earth map.
+#lat=8
+#lon=8
+#west=16650
+#north=2450
+#file=NE2_HR_LC_SR_W_DR.tif
+
+# Parameter set for Blue Marble map.
+lat=16
+lon=16
+west=11700     # (16650-21600/2) * 2
+north=5000     # 2450 * 2
+file=land_shallow_topo_east.tif
+
+convert $file -crop $((lon*tile))x$((lat*tile))+${west}+${north} china.png
 
 for (( i=0; i<$lon; i++ ))
 do
@@ -22,6 +32,6 @@ do
     done
 done
 
-# Map for Tang dynasty. We may eventually use this big map. 
+# Map for Tang dynasty. We may eventually use this big map (Natural Earth). 
 # But for now, let's save the space.
 # convert NE2_HR_LC_SR_W_DR.tif -crop 6144x3072+13500+1500 china.png
