@@ -15,7 +15,7 @@ import android.app.{ActionBar, Activity}
 import android.os.Bundle
 import android.view.View
 import android.util.Log
-import net.whily.scaland.Util
+import net.whily.scaland.{ExceptionHandler, Util}
 
 class MapActivity extends Activity {
   private var bar: ActionBar = null
@@ -24,7 +24,9 @@ class MapActivity extends Activity {
   override def onCreate(icicle: Bundle) { 
     super.onCreate(icicle)
 
-    Log.d(tag, "onCreate")
+    // Set handler for uncaught exception raised from current activity.
+    Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this))
+
     setContentView(R.layout.map)  
     setTitle("")
     
