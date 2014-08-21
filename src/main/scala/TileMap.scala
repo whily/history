@@ -96,6 +96,8 @@ class TileMap(context: Context, zoomLevel: Int) {
               Util.getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
           }
           canvas.drawBitmap(maps(index), null, tileRect, paint)
+        } else {
+          maps(index) = null    // Release bitmap memory.
         }
       }
     }
