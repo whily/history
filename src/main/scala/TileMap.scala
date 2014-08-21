@@ -129,10 +129,6 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("邺", 36.333333, 114.616667),      // Should be 20 km sw of the county.
           Place("许", 34.035803, 113.852478),    // To be confirmed
           Place("寿春", 32.0, 116.5),             // Estimated
-          Place("官渡", 34.720967, 114.014228),    // To be confirmed
-          Place("乌巢", 35.3, 114.2),    // To be confirmed
-          Place("襄阳", 32.066667, 112.083333),    // To be confirmed
-          Place("南阳", 33.004722, 112.5275),    // To be confirmed
           Place("鄄城", 35.566667, 115.5),    // To be confirmed
           Place("房陵", 32.1, 110.6),    // To be confirmed
           Place("上庸", 32.316667, 110.15),    // To be confirmed
@@ -146,7 +142,8 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("河内郡", 35.1, 113.4),    // 懷縣/武陟县 To be confirmed
           Place("河東郡", 35.138333, 111.220833),    // 安邑/夏县 To be confirmed
           Place("左馮翊", 34.506, 109.051),    // 高陵縣/高陵縣 To be confirmed
-          Place("右扶風", 34.2995, 108.4905),    // 槐里县/兴平市 To be confirmed
+          Place("右扶風", 34.2995, 108.4905),    // 槐里县/兴平市 To be confirmde
+          Place("郿縣(褒斜道)", 34.27786, 107.60493),    // 眉县 To be confirmed
 
           // 冀州
           Place("渤海郡(南皮)", 38.033333, 116.7),    // 南皮/南皮县 To be confirmed
@@ -158,6 +155,11 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("泰山郡", 36.204722, 117.159444),    // To be confirmed
           Place("濟北國", 36.8, 116.766667),    // To be confirmed
           Place("陈留郡", 34.8, 114.3),    // To be confirmed
+          Place("官渡", 34.720967, 114.014228),    // To be confirmed
+          Place("乌巢", 35.3, 114.2),    // To be confirmed
+          Place("黎陽縣", 35.676111, 114.55),    // 浚县 To be confirmed
+          Place("白馬", 35.466375, 114.636289),    // 滑县 To be confirmed
+          Place("延津", 35.3, 114.2),    // 延津 To be confirmed
 
           // 徐州
           Place("广陵郡", 32.4, 119.416667),    // To be confirmed
@@ -170,6 +172,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           // 凉州
           Place("武都郡", 33.916667, 105.666667),    // 下辨县/成县 To be confirmed
           Place("金城郡", 36.3425, 102.858889),    // 允吾县/民和 To be confirmed
+          Place("隴西郡(狄道縣)", 35.379422, 103.8564),    // 狄道縣/临洮县 To be confirmed
 
           // 并州
           Place("上党郡", 36.123889, 112.876944),    //  长子县/长子县 To be confirmed
@@ -190,38 +193,61 @@ class TileMap(context: Context, zoomLevel: Int) {
           // 益州
           Place("成都", 30.658611, 104.064722),   // To be confirmed
           Place("汉中郡", 33.066667, 107.016667),    // To be confirmed
+          Place("定軍山", 33.13756, 106.664275),    // To be confirmed
+          Place("兴势山", 33.216667, 107.533333),    // 洋县 To be confirmed
+          Place("街亭", 34.9071, 105.69833),    // 秦安县??? To be confirme
+          Place("列柳城", 33.91711, 106.5204),    // 双石铺镇??? To be confirmed
+          Place("陈仓", 34.35, 107.366667),    // 寶雞 To be confirmed
+          Place("汉", 33.15, 106.666667),    // 勉县 To be confirmed
+          Place("乐", 32.15, 107.316667),    // 城固县 To be confirmed
+          Place("子口", 34.1645, 108.9502),    // 长安区 To be confirmed
+          Place("午口", 33.0475, 108.23),    // 石泉縣 To be confirmed
+          Place("木门道", 34.44066, 105.4979),    // 牡丹镇 To be confirmed
+          Place("沓中", 34, 103.55),    // 迭部县 To be confirmed
           Place("阳平關", 32.961353, 106.055392),        // To be confirmed
           Place("涪城", 31.466667, 104.683333),    // To be confirmed
           Place("葭萌", 32.433333, 105.816667),    // To be confirmed
           Place("绵竹", 31.333333, 104.2),    // To be confirmed
           Place("阴平", 32.916667, 104.766667),    // To be confirmed
-          Place("剑阁", 31.285278, 105.523611),    // To be confirmed
+          Place("剑阁", 32.211505, 105.573795),    // 剑门关
           Place("永安", 31.0175, 109.465),    // To be confirmed
           Place("巴郡", 29.560454, 106.5734),    // 江州县/渝中区 To be confirmed
           Place("广汉郡(雒)", 30.99, 104.25),    // 雒县/广汉市 To be confirmed
           Place("犍为郡", 30.193333, 103.866667),    // 武阳县/彭山县 To be confirmed
           Place("益州郡", 24.668442, 102.591053),    // 滇池县/晋宁县 To be confirmed
           Place("永昌郡", 25.103889, 99.158056),    // 不韋縣/保山市? To be confirmed
+          Place("牂柯郡", 26.573056, 106.706111),    // 故且蘭縣/貴陽市 To be confirmed
+          Place("越巂郡", 27.894444, 102.264444),    // 邛都縣/西昌市 To be confirmed
 
           Place("建业", 32.05, 118.766667),    // To be confirmed
-          Place("江陵", 30.133333, 112.5) ,       // To be confirmed
           Place("濡须", 31.678333, 117.735278),     // To be confirmed
-          Place("赤壁", 29.72647, 113.93091),    // To be confirmed
           Place("庐陵", 27.133333, 115),    // To be confirmed
           Place("江夏", 30.554722, 114.312778),    // To be confirmed
 
           // 荆州
+          Place("襄阳", 32.066667, 112.083333),    // To be confirmed
+          Place("南阳", 33.004722, 112.5275),    // To be confirmed
+          Place("新野縣", 32.52, 112.36),    // 新野縣 To be confirmed
+          Place("赤壁", 29.72647, 113.93091),    // To be confirmed
+          Place("烏林", 30.016667, 113.533333),    // 洪湖市 To be confirmed
+          Place("麥城", 30.70029, 111.92649),    // 两河镇 (当阳市) To be confirmed
           Place("武陵郡", 29.0035, 111.6928),    // 临沅县 To be confirmed
           Place("长沙郡", 28.196111, 112.972222),    // To be confirmed
           Place("桂阳郡", 25.8, 113.05),    // To be confirmed
           Place("零陵郡", 25.616667, 110.666667),    // To be confirmed
+          Place("江陵", 30.133333, 112.5) ,       // To be confirmed
+          Place("秭歸縣", 30.832677, 110.978394) ,       // 秭歸縣 To be confirmed
+          Place("巫縣", 31.0769, 109.878216) ,       // 巫山縣 To be confirmed
+          Place("華容縣", 30.4, 112.9) ,       // 潜江市 To be confirmed
 
           // 扬州
           Place("丹阳郡", 30.945, 118.814167),    // To be confirmed
           Place("庐江郡", 31.259898, 117.307838),    // 舒县 To be confirmed
           Place("会稽郡", 30.081944, 120.494722),    // To be confirmed
-          Place("吴郡", 31.3, 120.6),    // 南昌 To be confirmed
-          Place("豫章郡", 28.683333, 115.883333),    // To be confirmed
+          Place("吴郡", 31.3, 120.6),    //  To be confirmed
+          Place("豫章郡", 28.683333, 115.883333),    // 南昌 To be confirmed
+          Place("柴桑縣", 29.738056, 115.987222),    // 九江市 To be confirmed
+          Place("巴丘", 29.366667, 113.433333),    // 岳阳 To be confirmed
 
           // 交州
           Place("南海郡", 23.128795, 113.258976),    // 番禺县/广州市 To be confirmed
