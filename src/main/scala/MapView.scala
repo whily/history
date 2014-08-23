@@ -14,6 +14,7 @@ package net.whily.android.history
 import android.app.Activity
 import android.content.Context
 import android.graphics.{Canvas, Color, Paint}
+import android.location.LocationManager
 import android.util.AttributeSet
 import android.view.{MotionEvent, ScaleGestureDetector, View}
 import android.util.FloatMath
@@ -46,6 +47,17 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   paint.setStyle(Paint.Style.FILL)
   paint.setTextSize(36f)
 
+
+  val locMgr = context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+  val loc = locMgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+  // User location.
+  var userLon = 0.0
+  var userLat = 0.0
+  if (loc != null) {
+    userLon = loc.getLongitude()
+    userLat = loc.getLatitude()
+  }
+
   override def onTouchEvent(event: MotionEvent): Boolean = {
     event.getAction() & MotionEvent.ACTION_MASK match {
       case MotionEvent.ACTION_DOWN =>
@@ -77,7 +89,8 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     if (map == null) {
       map = new TileMap(context, 0)
     }
-    map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel)
+    map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel, 
+             userLon, userLat)
   }
 
   private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {

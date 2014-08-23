@@ -66,7 +66,7 @@ class TileMap(context: Context, zoomLevel: Int) {
   Log.d("TileMap", "Initialize")
 
   def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double, 
-           screenZoomLevel: Int) {
+           screenZoomLevel: Int, userLon: Double, userLat: Double) {
     // Ignore source/destination density by using RectF version of drawBitmap.
 
     val canvasWidth = canvas.getWidth()
@@ -103,12 +103,25 @@ class TileMap(context: Context, zoomLevel: Int) {
     }
 
     for (place <- places) {
-      val scalingFactor = math.pow(2.0, -screenZoomLevel)
-      val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(place.lon - centerLon)).asInstanceOf[Float]
-      val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(place.lat - centerLat)).asInstanceOf[Float]
-      canvas.drawCircle(x, y, 8f, paint)
-      canvas.drawText(place.name, x + 10, y, paint)
+      drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
+        place.lon, place.lat, place.name, canvas, paint)
     }
+
+    val savedColor = paint.getColor()
+    paint.setColor(Color.GREEN)
+    drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
+      userLon, userLat, "", canvas, paint)
+    paint.setColor(savedColor)
+  }
+
+  private def drawPointLabel(screenZoomLevel: Int, canvasWidth: Int, canvasHeight: Int,
+    centerLon: Double, centerLat: Double, placeLon: Double, placeLat: Double, text: String,
+    canvas: Canvas, paint: Paint) {
+    val scalingFactor = math.pow(2.0, -screenZoomLevel)
+    val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(placeLon - centerLon)).asInstanceOf[Float]
+    val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(placeLat - centerLat)).asInstanceOf[Float]
+    canvas.drawCircle(x, y, 8f, paint)
+    canvas.drawText(text, x + 10, y, paint)
   }
 
   /** Return longitude difference given pixel difference in x-coordinate. */
