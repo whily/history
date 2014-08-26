@@ -104,24 +104,59 @@ class TileMap(context: Context, zoomLevel: Int) {
 
     for (place <- places) {
       drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
-        place.lon, place.lat, place.name, canvas, paint)
+        place.lon, place.lat, place.ptype, place.name, canvas, paint)
     }
 
-    val savedColor = paint.getColor()
-    paint.setColor(Color.GREEN)
-    drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
-      userLon, userLat, "", canvas, paint)
-    paint.setColor(savedColor)
+    //val savedColor = paint.getColor()
+    //paint.setColor(Color.GREEN)
+    //drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
+    //  userLon, userLat, "", canvas, paint)
+    //paint.setColor(savedColor)
   }
 
   private def drawPointLabel(screenZoomLevel: Int, canvasWidth: Int, canvasHeight: Int,
-    centerLon: Double, centerLat: Double, placeLon: Double, placeLat: Double, text: String,
-    canvas: Canvas, paint: Paint) {
+    centerLon: Double, centerLat: Double, placeLon: Double, placeLat: Double, placeType: PlaceType.PlaceType,
+    text: String, canvas: Canvas, paint: Paint) {
+    val savedColor = paint.getColor()
     val scalingFactor = math.pow(2.0, -screenZoomLevel)
     val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(placeLon - centerLon)).asInstanceOf[Float]
     val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(placeLat - centerLat)).asInstanceOf[Float]
-    canvas.drawCircle(x, y, 8f, paint)
+
+    paint.setColor(Color.CYAN)
+    placeType match {
+      case PlaceType.Capital => 
+        paint.setStyle(Paint.Style.STROKE)
+        canvas.drawCircle(x, y, 16f, paint)
+        canvas.drawCircle(x, y, 12f, paint)
+        canvas.drawCircle(x, y, 8f, paint)
+      case PlaceType.Province => 
+        paint.setStyle(Paint.Style.STROKE)
+        canvas.drawCircle(x, y, 14f, paint)
+        canvas.drawCircle(x, y, 10f, paint)
+      case PlaceType.Prefecture => 
+        paint.setStyle(Paint.Style.STROKE)
+        canvas.drawCircle(x, y, 12f, paint)
+        paint.setStyle(Paint.Style.FILL)
+        canvas.drawCircle(x, y, 8f, paint)
+      case PlaceType.County => 
+        paint.setStyle(Paint.Style.STROKE)
+        canvas.drawCircle(x, y, 10f, paint)
+      case PlaceType.Town => 
+        paint.setStyle(Paint.Style.FILL)
+        canvas.drawCircle(x, y, 8f, paint)
+    }
+    paint.setColor(Color.BLACK)
+
+    val textSize = placeType match {
+      case PlaceType.Capital => 52f
+      case PlaceType.Province => 48f
+      case PlaceType.Prefecture => 44f
+      case PlaceType.County => 40f
+      case PlaceType.Town => 36f
+    }
+    paint.setTextSize(textSize)
     canvas.drawText(text, x + 10, y, paint)
+    paint.setColor(savedColor)
   }
 
   /** Return longitude difference given pixel difference in x-coordinate. */
@@ -131,19 +166,19 @@ class TileMap(context: Context, zoomLevel: Int) {
   def latDiff(pixelDiff: Double) = worldFile.latDiff(pixelDiff)
 
   private val places = 
-    Array(Place("洛阳", 34.631514, 112.454681),   // To be confirmed
+    Array(Place("洛阳", 34.631514, 112.454681, PlaceType.Capital),   // To be confirmed
           Place("长安", 34.266667, 108.9),        // To be confirmed
-          Place("武關", 33.71,110.35),        // To be confirmed
-          Place("函谷關", 34.519467, 110.869081),        // To be confirmed
-          Place("萧關", 36.016667, 106.25),        // To be confirmed
-          Place("大散關", 34.35, 107.366667),        // To be confirmed
+          Place("武關", 33.71,110.35, PlaceType.Town),        // To be confirmed
+          Place("函谷關", 34.519467, 110.869081, PlaceType.Town),        // To be confirmed
+          Place("萧關", 36.016667, 106.25, PlaceType.Town),        // To be confirmed
+          Place("大散關", 34.35, 107.366667, PlaceType.Town),        // To be confirmed
           Place("邺", 36.333333, 114.616667),      // Should be 20 km sw of the county.
           Place("许", 34.035803, 113.852478),    // To be confirmed
           Place("寿春", 32.0, 116.5),             // Estimated
           Place("鄄城", 35.566667, 115.5),    // To be confirmed
           Place("房陵", 32.1, 110.6),    // To be confirmed
           Place("上庸", 32.316667, 110.15),    // To be confirmed
-          Place("潼关", 34.486389, 110.263611),    // To be confirmed
+          Place("潼关", 34.486389, 110.263611, PlaceType.Town),    // To be confirmed
           Place("合肥", 31.85, 117.266667),    // To be confirmed
           Place("濮阳", 35.75, 115.016667),    // To be confirmed
           Place("东阿", 36.333333, 116.25),    // To be confirmed
@@ -154,7 +189,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("河東郡", 35.138333, 111.220833),    // 安邑/夏县 To be confirmed
           Place("左馮翊", 34.506, 109.051),    // 高陵縣/高陵縣 To be confirmed
           Place("右扶風", 34.2995, 108.4905),    // 槐里县/兴平市 To be confirmde
-          Place("郿縣(褒斜道)", 34.27786, 107.60493),    // 眉县 To be confirmed
+          Place("郿縣(褒斜道)", 34.27786, 107.60493, PlaceType.County),    // 眉县 To be confirmed
 
           // 冀州
           Place("渤海郡(南皮)", 38.033333, 116.7),    // 南皮/南皮县 To be confirmed
@@ -166,15 +201,15 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("泰山郡", 36.204722, 117.159444),    // To be confirmed
           Place("濟北國", 36.8, 116.766667),    // To be confirmed
           Place("陈留郡", 34.8, 114.3),    // To be confirmed
-          Place("官渡", 34.720967, 114.014228),    // To be confirmed
-          Place("乌巢", 35.3, 114.2),    // To be confirmed
-          Place("黎陽縣", 35.676111, 114.55),    // 浚县 To be confirmed
-          Place("白馬", 35.466375, 114.636289),    // 滑县 To be confirmed
-          Place("延津", 35.3, 114.2),    // 延津 To be confirmed
+          Place("官渡", 34.720967, 114.014228, PlaceType.Town),    // To be confirmed
+          Place("乌巢", 35.3, 114.2, PlaceType.Town),    // To be confirmed
+          Place("黎陽縣", 35.676111, 114.55, PlaceType.County),    // 浚县 To be confirmed
+          Place("白馬", 35.466375, 114.636289, PlaceType.Town),    // 滑县 To be confirmed
+          Place("延津", 35.3, 114.2, PlaceType.County),    // 延津 To be confirmed
 
           // 徐州
           Place("广陵郡", 32.4, 119.416667),    // To be confirmed
-          Place("下邳", 34.316667, 117.95),    // To be confirmed
+          Place("下邳", 34.316667, 117.95, PlaceType.Province),    // To be confirmed
 
           // 青州
           Place("北海國", 36.883333, 118.733333),    // To be confirmed
@@ -202,20 +237,20 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("乐浪郡", 39.019444, 125.738056),    // 朝鲜县/平壤 To be confirmed
 
           // 益州
-          Place("成都", 30.658611, 104.064722),   // To be confirmed
+          Place("成都", 30.658611, 104.064722, PlaceType.Capital),   // To be confirmed
           Place("汉中郡", 33.066667, 107.016667),    // To be confirmed
-          Place("定軍山", 33.13756, 106.664275),    // To be confirmed
-          Place("兴势山", 33.216667, 107.533333),    // 洋县 To be confirmed
-          Place("街亭", 34.9071, 105.69833),    // 秦安县??? To be confirme
-          Place("列柳城", 33.91711, 106.5204),    // 双石铺镇??? To be confirmed
+          Place("定軍山", 33.13756, 106.664275, PlaceType.Town),    // To be confirmed
+          Place("兴势山", 33.216667, 107.533333, PlaceType.Town),    // 洋县 To be confirmed
+          Place("街亭", 34.9071, 105.69833, PlaceType.Town),    // 秦安县??? To be confirme
+          Place("列柳城", 33.91711, 106.5204, PlaceType.Town),    // 双石铺镇??? To be confirmed
           Place("陈仓", 34.35, 107.366667),    // 寶雞 To be confirmed
-          Place("汉", 33.15, 106.666667),    // 勉县 To be confirmed
-          Place("乐", 32.15, 107.316667),    // 城固县 To be confirmed
-          Place("子口", 34.1645, 108.9502),    // 长安区 To be confirmed
-          Place("午口", 33.0475, 108.23),    // 石泉縣 To be confirmed
-          Place("木门道", 34.44066, 105.4979),    // 牡丹镇 To be confirmed
+          Place("汉", 33.15, 106.666667, PlaceType.Town),    // 勉县 To be confirmed
+          Place("乐", 32.15, 107.316667, PlaceType.Town),    // 城固县 To be confirmed
+          Place("子口", 34.1645, 108.9502, PlaceType.Town),    // 长安区 To be confirmed
+          Place("午口", 33.0475, 108.23, PlaceType.Town),    // 石泉縣 To be confirmed
+          Place("木门道", 34.44066, 105.4979, PlaceType.Town),    // 牡丹镇 To be confirmed
           Place("沓中", 34, 103.55),    // 迭部县 To be confirmed
-          Place("阳平關", 32.961353, 106.055392),        // To be confirmed
+          Place("阳平關", 32.961353, 106.055392, PlaceType.Town),        // To be confirmed
           Place("涪城", 31.466667, 104.683333),    // To be confirmed
           Place("葭萌", 32.433333, 105.816667),    // To be confirmed
           Place("绵竹", 31.333333, 104.2),    // To be confirmed
@@ -230,7 +265,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("牂柯郡", 26.573056, 106.706111),    // 故且蘭縣/貴陽市 To be confirmed
           Place("越巂郡", 27.894444, 102.264444),    // 邛都縣/西昌市 To be confirmed
 
-          Place("建业", 32.05, 118.766667),    // To be confirmed
+          Place("建业", 32.05, 118.766667, PlaceType.Capital),    // To be confirmed
           Place("濡须", 31.678333, 117.735278),     // To be confirmed
           Place("庐陵", 27.133333, 115),    // To be confirmed
           Place("江夏", 30.554722, 114.312778),    // To be confirmed
@@ -238,17 +273,17 @@ class TileMap(context: Context, zoomLevel: Int) {
           // 荆州
           Place("襄阳", 32.066667, 112.083333),    // To be confirmed
           Place("南阳", 33.004722, 112.5275),    // To be confirmed
-          Place("新野縣", 32.52, 112.36),    // 新野縣 To be confirmed
-          Place("赤壁", 29.72647, 113.93091),    // To be confirmed
-          Place("烏林", 30.016667, 113.533333),    // 洪湖市 To be confirmed
-          Place("麥城", 30.70029, 111.92649),    // 两河镇 (当阳市) To be confirmed
+          Place("新野縣", 32.52, 112.36, PlaceType.County),    // 新野縣 To be confirmed
+          Place("赤壁", 29.72647, 113.93091, PlaceType.Town),    // To be confirmed
+          Place("烏林", 30.016667, 113.533333, PlaceType.Town),    // 洪湖市 To be confirmed
+          Place("麥城", 30.70029, 111.92649, PlaceType.Town),    // 两河镇 (当阳市) To be confirmed
           Place("武陵郡", 29.0035, 111.6928),    // 临沅县 To be confirmed
           Place("长沙郡", 28.196111, 112.972222),    // To be confirmed
           Place("桂阳郡", 25.8, 113.05),    // To be confirmed
           Place("零陵郡", 25.616667, 110.666667),    // To be confirmed
           Place("江陵", 30.133333, 112.5) ,       // To be confirmed
-          Place("秭歸縣", 30.832677, 110.978394) ,       // 秭歸縣 To be confirmed
-          Place("巫縣", 31.0769, 109.878216) ,       // 巫山縣 To be confirmed
+          Place("秭歸縣", 30.832677, 110.978394, PlaceType.County) ,       // 秭歸縣 To be confirmed
+          Place("巫縣", 31.0769, 109.878216, PlaceType.County) ,       // 巫山縣 To be confirmed
           Place("華容縣", 30.4, 112.9) ,       // 潜江市 To be confirmed
 
           // 扬州
@@ -269,6 +304,6 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed 105o 42' 19", 19o 47' 44"
           Place("日南郡", 16.830278, 107.097222),    // 西卷县/東河市 To be confirmed
 
-          Place("夷陵", 30.766667, 111.316667)    // To be confirmed
+          Place("夷陵", 30.766667, 111.316667, PlaceType.Town)    // To be confirmed
     )
 }

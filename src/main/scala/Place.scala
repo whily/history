@@ -11,4 +11,10 @@
 
 package net.whily.android.history
 
-case class Place(name: String, lat: Double, lon: Double)
+object PlaceType extends Enumeration {
+  type PlaceType = Value
+  val Capital, Province, Prefecture, County, Town = Value
+}
+
+case class Place(name: String, lat: Double, lon: Double, 
+  ptype: PlaceType.PlaceType = PlaceType.Prefecture)

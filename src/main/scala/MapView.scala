@@ -44,9 +44,6 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
 
   private val paint = new Paint()
   paint.setAntiAlias(true)
-  paint.setStyle(Paint.Style.FILL)
-  paint.setTextSize(36f)
-
 
   val locMgr = context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
   val loc = locMgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
