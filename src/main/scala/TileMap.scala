@@ -130,8 +130,6 @@ class TileMap(context: Context, zoomLevel: Int) {
   /** Return latitude difference given pixel differnce in y-coordinate. */
   def latDiff(pixelDiff: Double) = worldFile.latDiff(pixelDiff)
 
-  case class Place(name: String, lat: Double, lon: Double)
-
   private val places = 
     Array(Place("洛阳", 34.631514, 112.454681),   // To be confirmed
           Place("长安", 34.266667, 108.9),        // To be confirmed
