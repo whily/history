@@ -12,8 +12,11 @@
 package net.whily.android.history
 
 import android.app.{ActionBar, Activity}
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.OnClickListener
+import android.widget.Button
 import android.util.Log
 import net.whily.scaland.{ExceptionHandler, Util}
 
@@ -32,6 +35,14 @@ class MapActivity extends Activity {
     
     bar = getActionBar
     bar.setHomeButtonEnabled(true)
+
+    val button = findViewById(R.id.button1).asInstanceOf[Button]
+    val activity = this
+    button.setOnClickListener(new OnClickListener() {
+      override def onClick(view: View) {
+        startActivity(new Intent(activity, classOf[BookActivity]))
+      }
+    })
 
     Util.requestImmersiveMode(this)
   }
