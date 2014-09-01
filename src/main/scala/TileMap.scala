@@ -122,7 +122,7 @@ class TileMap(context: Context, zoomLevel: Int) {
     val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(placeLon - centerLon)).asInstanceOf[Float]
     val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(placeLat - centerLat)).asInstanceOf[Float]
 
-    paint.setColor(Color.CYAN)
+    paint.setColor(Color.rgb(0x1f, 0x5e, 0x67))
     placeType match {
       case PlaceType.Capital => 
         paint.setStyle(Paint.Style.STROKE)
@@ -132,12 +132,12 @@ class TileMap(context: Context, zoomLevel: Int) {
       case PlaceType.Province => 
         paint.setStyle(Paint.Style.STROKE)
         canvas.drawCircle(x, y, 14f, paint)
-        canvas.drawCircle(x, y, 10f, paint)
+        canvas.drawCircle(x, y, 6f, paint)
       case PlaceType.Prefecture => 
         paint.setStyle(Paint.Style.STROKE)
         canvas.drawCircle(x, y, 12f, paint)
         paint.setStyle(Paint.Style.FILL)
-        canvas.drawCircle(x, y, 8f, paint)
+        canvas.drawCircle(x, y, 6f, paint)
       case PlaceType.County => 
         paint.setStyle(Paint.Style.STROKE)
         canvas.drawCircle(x, y, 10f, paint)
@@ -148,10 +148,10 @@ class TileMap(context: Context, zoomLevel: Int) {
     paint.setColor(Color.BLACK)
 
     val textSize = placeType match {
-      case PlaceType.Capital => 52f
-      case PlaceType.Province => 48f
-      case PlaceType.Prefecture => 44f
-      case PlaceType.County => 40f
+      case PlaceType.Capital => 44f
+      case PlaceType.Province => 42f
+      case PlaceType.Prefecture => 40f
+      case PlaceType.County => 38f
       case PlaceType.Town => 36f
     }
     paint.setTextSize(textSize)
