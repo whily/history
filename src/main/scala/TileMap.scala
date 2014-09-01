@@ -184,6 +184,13 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("东阿", 36.333333, 116.25),    // To be confirmed
           Place("范", 35.85, 115.5),    // To be confirmed
 
+          // 雍州
+          // 中國歷史地圖集/三国/雍州: 祁山=2/3礼县 + 1/3天水市
+          //   礼县 34.100833, 104.976944,  天水市 34.576, 105.709
+          Place("祁山", 34.25922, 105.22096, PlaceType.County),
+          // 中國歷史地圖集/三国/雍州: 上邽=天水市
+          Place("上邽", 34.576, 105.709, PlaceType.County),
+
           // 司隸
           Place("河内郡", 35.1, 113.4),    // 懷縣/武陟县 To be confirmed
           Place("河東郡", 35.138333, 111.220833),    // 安邑/夏县 To be confirmed
