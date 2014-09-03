@@ -34,17 +34,6 @@ import android.util.Log
   * and zoom level 0 tiles are directly scaled on the fly.
   */
 class TileMap(context: Context, zoomLevel: Int) {
-  // Modify the following 5 parameters based on the attributes of the map.
-
-  // Natural Earth II 1:10m world file NE2_HR_LC_SR_W_DR.tfw
-  // private val worldFile = new WorldFile(0.01666666666667, -0.01666666666667, 
-  //                                       -179.99166666666667, 89.99166666666667)
-  // // The following parameters are related to how we crop the map.
-  // private val mapX    = 2048    // Number of pixels in X dimension (west-east)
-  // private val mapY    = 2048    // Number of pixels in Y dimension (north-south)
-  // private val mapLeft = 16650   // The left (west) of the map 
-  // private val mapTop  = 2450    // The top (north) of the map
-
   // Blue Marble  Land Surface, Shallow Water, and Shaded Topography Eastern Hemisphere map
   // World file is from http://grasswiki.osgeo.org/wiki/Blue_Marble
   private val worldFile = new WorldFile(0.008333333333333, -0.008333333333333, 

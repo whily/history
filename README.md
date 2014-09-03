@@ -34,21 +34,9 @@ In project directory, run following command:
 
 ### Download the maps
 
-There are two choices of maps: one from Natural Earth, another from
-Blue Marble. The difference between the two is that Natural Earth maps
-shows water (rivers, lakes etc.), while Blue Marble has higher
-resolution. Download map according to descriptoin below, and
-comment/uncomment accordingly in both 'script/cropmap' and
-'src/main/scala/TileMap.scala'.
+The app uses Blue Marble map.
 
 1. Download maps
-
-Download 1:10m Natural Earth II with Shaded Relief, Water, and
-Drainages from
-<http://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/>.
-Direct link is:
-<http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip>. Unzip
-`NE2_HR_LC_SR_W_DR.tif` into tools directory.
 
 Download Blue Marble Land Surface, Shallow Water, and Shaded
 Topography Eastern Hemisphere map from
@@ -56,8 +44,7 @@ Topography Eastern Hemisphere map from
 Direct link is:
 <http://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_shallow_topo_east.tif>. 
 
-2. Unnzip `NE2_HR_LC_SR_W_DR.tif` into `tools` directory, or put
-`land_shallow_topo_east.tif` directly into `tools` directory.
+2. Put `land_shallow_topo_east.tif` directly into `tools` directory.
 
 3. In the directory, run script `cropmap`, which automatically crop
 the tile maps.
