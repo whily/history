@@ -270,6 +270,11 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("襄阳", 32.066667, 112.083333),    // To be confirmed
           Place("南阳", 33.004722, 112.5275),    // To be confirmed
           Place("新野縣", 32.52, 112.36, PlaceType.County),    // 新野縣 To be confirmed
+          Place("當陽", 30.975278, 112.334444, PlaceType.County),    // 荆门市掇刀区. Different from 中國歷史地圖集: to be confirmed
+          Place("宜城", 31.7, 112.366667, PlaceType.County),    // 宜城市 (中國歷史地圖集/三国/荆州)
+          Place("夷陵", 30.766667, 111.316667, PlaceType.County),    // To be confirmed
+          Place("夷道", 30.383333, 111.45, PlaceType.County),    // 宜都 (Marked by 中國歷史地圖集/三国/荆州)
+          Place("猇亭", 30.535833, 111.423056, PlaceType.Town),    // 猇亭区 (Estimated from 中國歷史地圖集/三国/荆州)
           Place("赤壁", 29.72647, 113.93091, PlaceType.Town),    // To be confirmed
           Place("烏林", 30.016667, 113.533333, PlaceType.Town),    // 洪湖市 To be confirmed
           Place("麥城", 30.70029, 111.92649, PlaceType.Town),    // 两河镇 (当阳市) To be confirmed
@@ -297,9 +302,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("郁林郡", 22.633333, 110.15),    // 布山县/玉林市 To be confirmed
           Place("合浦郡", 21.675, 109.193056),    // 合浦县/合浦县 To be confirmed
           Place("交趾郡", 21.183333, 106.05),    // 龙编县/北宁市? To be confirmed
-          Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed 105o 42' 19", 19o 47' 44"
-          Place("日南郡", 16.830278, 107.097222),    // 西卷县/東河市 To be confirmed
-
-          Place("夷陵", 30.766667, 111.316667, PlaceType.Town)    // To be confirmed
+          Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed 
+          Place("日南郡", 16.830278, 107.097222)    // 西卷县/東河市 To be confirmed
     )
 }
