@@ -10,6 +10,7 @@
  */
 
 import net.whily.android.history.ChineseCalendar._
+import java.util.GregorianCalendar
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.FunSpec
  
@@ -35,6 +36,10 @@ class ChineseCalendarSpec extends FunSpec with ShouldMatchers {
                Month("六月", "丙子"), Month("七月", "丙午"), Month("八月", "乙亥"), 
                Month("九月", "乙巳"), Month("十月", "甲戌"), Month("十一月", "甲辰"), 
                Month("十二月", "癸酉")))
+    }
+
+    it("Check date.") {
+      toGregorianCalendar("漢平帝元始元年") should be (new GregorianCalendar(1, 2, 11))
     }
   }
 }
