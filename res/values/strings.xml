@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">歷史</string>
+
+  <!-- Drawer Menu Items -->
+  <string-array name="drawer_items">
+    <item>史</item>
+    <item>圖</item>
+    <item>人</item>
+  </string-array>
   
   <!--  BookActivity -->
   <string name="sanguozhi">

@@ -1,56 +1,28 @@
 import sbt._
+import sbt.Keys._
 
-import Keys._
-import AndroidKeys._
+import android.Keys._
+import android.Dependencies.apklib
 
-object General {
-  // Some basic configuration
-  val settings = Defaults.defaultSettings ++ Seq (
+object HistoryBuild extends android.AutoBuild {
+  lazy val main = Project(id = "main", base = file(".")) settings(Seq(
     name := "history",
     version := "0.0.1",
-    versionCode := 1,
+    versionCode := Some(1),
     scalaVersion := "2.11.0",
-    platformName in Android := "android-19",
-    javacOptions ++= Seq("-encoding", "UTF-8", "-source", "1.6", "-target", "1.6")
-  )
+    scalacOptions in Compile ++= Seq("-deprecation", "-Xexperimental"),
 
-  // Default Proguard settings
-  lazy val proguardSettings = inConfig(Android) (Seq (
-    useProguard := true,
-    proguardOptimizations += "-keep class net.whily.android.history.** { *; }",
-    proguardOptimizations += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }"
-  ))
+    javacOptions ++= Seq("-encoding", "UTF-8", "-source", "1.6", "-target", "1.6"),
+    javacOptions in Compile  += "-deprecation",        
 
-  // Full Android settings
-  lazy val fullAndroidSettings =
-    General.settings ++
-    AndroidProject.androidSettings ++
-    TypedResources.settings ++
-    proguardSettings ++
-    AndroidManifestGenerator.settings ++
-    AndroidMarketPublish.settings ++ Seq (
-      keyalias in Android := "change-me",
-      libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.0" % "test",
-      libraryDependencies += "net.whily" %% "scasci" % "0.0.1-SNAPSHOT",
-      libraryDependencies += "net.whily" %% "scaland" % "0.0.1-SNAPSHOT"
-    )
-}
+    platformTarget in Android := "android-21",
+    
+    proguardOptions in Android += "-keep class net.whily.android.history.** { *; }",
+    proguardOptions in Android += "-keep class scala.collection.SeqLike { public java.lang.String toString(); }",
 
-object AndroidBuild extends Build {
-  lazy val main = Project (
-    "main",
-    file("."),
-    settings = General.fullAndroidSettings ++ AndroidEclipseDefaults.settings
-  )
-
-  lazy val tests = Project (
-    "tests",
-    file("tests"),
-    settings = General.settings ++
-               AndroidEclipseDefaults.settings ++
-               AndroidTest.androidSettings ++
-               General.proguardSettings ++ Seq (
-      name := "historyTests"
-    )
-  ) dependsOn main
+    libraryDependencies ++= Seq(
+      "org.scalatest" %% "scalatest" % "2.2.0" % "test",
+      "net.whily" %% "scasci" % "0.0.1-SNAPSHOT",
+      "net.whily" %% "scaland" % "0.0.1-SNAPSHOT")
+  ): _*)
 }

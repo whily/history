@@ -20,9 +20,9 @@ The following tools are needed to build History from source:
 * JDK version 6/7 from <http://www.java.com> if Java is not available. 
   Note that JDK is preinstalled on Mac OS X and available via package manager
   on many Linux systems. 
-* Android SDK r22.
+* Android SDK r23.0.5.
 * Scala (2.10.0)
-* sbt (0.12.4)
+* sbt (0.13.5)
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
   to generate icons.
 
@@ -52,24 +52,15 @@ the tile maps.
 ### Build the code
 
 The library dependencies include
-[scasci](https://github.com/whily/scasci) and
-[scaland](https://github.com/whily/scaland). Please follow the steps
-discussed in those libraries on how to use them.
+[scasci](https://github.com/whily/scasci),
+[scaland](https://github.com/whily/scaland), and
+[chinesecalendar](https://github.com/whily/chinesecalendar).  Please
+follow the steps discussed in those libraries on how to use them.
 
-To compile/run the code, follow the steps below:
-
-1. This step is a work around. It seems that the plugin sbt-android
-   assumes that tools like `aapt` and `dx` are located in
-   `$ANDROID_HOME/platform-tools`. However at least in Android SDK
-   r22, the location is `$ANDROID_HOME/build-tools/18.0.1/`. The
-   simplest solution is to copy those binaries (including directory
-   **lib** which is related to `dx`) to folder
-   `$ANDROID_HOME/platform-tools`.
-   
-2. In the project directory, run the following command to build the
+To compile/run the code, run the following command to build the
    app and start it in a connected device:
 
-        $ sbt android:start-device
+        $ sbt android:run
         
 ### Testing
 
@@ -82,6 +73,6 @@ There are two types of testing can be performed:
 * Android integration testing. Run the following commands in sbt:
 
         > project tests
-        > android:install-device
-        > android:test-device  
+        > android:install
+        > android:test
 
