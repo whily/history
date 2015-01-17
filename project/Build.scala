@@ -23,6 +23,8 @@ object HistoryBuild extends android.AutoBuild {
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "2.2.0" % "test",
       "net.whily" %% "scasci" % "0.0.1-SNAPSHOT",
-      "net.whily" %% "scaland" % "0.0.1-SNAPSHOT")
+      "net.whily" %% "scaland" % "0.0.1-SNAPSHOT",
+      "net.whily" %% "chinesecalendar" % "0.0.1-SNAPSHOT",
+      "net.whily" %% "hgc" % "0.0.1-SNAPSHOT")
   ): _*)
 }
