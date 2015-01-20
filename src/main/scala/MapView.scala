@@ -13,7 +13,7 @@ package net.whily.android.history
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.{Canvas, Color, Paint}
+import android.graphics.{Canvas, Color, Paint, Typeface}
 import android.location.LocationManager
 import android.util.AttributeSet
 import android.view.{MotionEvent, ScaleGestureDetector, View}
@@ -42,8 +42,11 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   private val dpi = Math.min(context.getResources().getDisplayMetrics().xdpi,
                              context.getResources().getDisplayMetrics().ydpi)
 
+  // Customize fonts.
+  private val font = Typeface.createFromAsset(context.getAssets(), "font.ttf")
   private val paint = new Paint()
   paint.setAntiAlias(true)
+  paint.setTypeface(font)
 
   val locMgr = context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
   val loc = locMgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
