@@ -12,6 +12,7 @@
 package net.whily.android.history
 
 import android.graphics.{Canvas, Paint}
+import net.whily.scasci.geo.Point
 
 /** Labels to draw on map. 
   * @param text label text
@@ -21,7 +22,6 @@ abstract class Label(text: String, size: Int) {
   def draw(canvas: Canvas, paint: Paint)
 }
 
-class Point(lon: Double, lat: Double)
 class Polyline(points: Array[Point])
 class Polygon(points: Array[Point])
 
