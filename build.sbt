@@ -14,11 +14,12 @@ libraryDependencies ++= Seq(
   "net.whily" %% "chinesecalendar" % "0.0.1-SNAPSHOT",
   "net.whily" %% "hgc" % "0.0.1-SNAPSHOT")
 
-platformTarget in Android := "android-21"
+platformTarget in Android := "android-22"
 
 proguardCache in Android ++= Seq(
   ProguardCache("scasci") % "net.whily" %% "scasci",
-  ProguardCache("scaland") % "net.whily" %% "scaland")
+  ProguardCache("scaland") % "net.whily" %% "scaland",
+  ProguardCache("chinesecalendar") % "net.whily" %% "chinesecalendar")
 
 proguardOptions in Android ++= Seq(
   "-dontobfuscate",

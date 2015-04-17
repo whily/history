@@ -3,7 +3,7 @@
           package="net.whily.android.history"
           android:versionCode="1"
           android:versionName="0.0.1" >
-  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19" />
+  <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="22" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
 
   <application
