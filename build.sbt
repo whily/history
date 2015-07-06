@@ -11,15 +11,14 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.0" % "test",
   "net.whily" %% "scasci" % "0.0.1-SNAPSHOT",
   "net.whily" %% "scaland" % "0.0.1-SNAPSHOT",
-  "net.whily" %% "chinesecalendar" % "0.0.1-SNAPSHOT",
+  "net.whily" %% "chinesecalendar" % "0.1.0-SNAPSHOT",
   "net.whily" %% "hgc" % "0.0.1-SNAPSHOT")
 
 platformTarget in Android := "android-22"
 
-proguardCache in Android ++= Seq(
-  ProguardCache("scasci") % "net.whily" %% "scasci",
-  ProguardCache("scaland") % "net.whily" %% "scaland",
-  ProguardCache("chinesecalendar") % "net.whily" %% "chinesecalendar")
+proguardCache in Android += "net.whily.scasci"
+proguardCache in Android += "net.whily.scaland"
+proguardCache in Android += "net.whily.chinesecalendar"
 
 proguardOptions in Android ++= Seq(
   "-dontobfuscate",
@@ -40,4 +39,3 @@ run <<= run in Android
 
 install <<= install in Android
 
-Keys.`package` <<= `packageT` in Android
