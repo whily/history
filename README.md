@@ -21,8 +21,8 @@ The following tools are needed to build History from source:
   Note that JDK is preinstalled on Mac OS X and available via package manager
   on many Linux systems. 
 * Android SDK r23.0.5.
-* Scala (2.10.0)
-* sbt (0.13.5)
+* Scala (2.10.6)
+* sbt (0.13.8)
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
   to generate icons.
 
