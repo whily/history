@@ -3,7 +3,7 @@
  *
  * @author  Yujian Zhang <yujian{dot}zhang[at]gmail(dot)com>
  *
- * License: 
+ * License:
  *   GNU General Public License v2
  *   http://www.gnu.org/licenses/gpl-2.0.html
  * Copyright (C) 2014 Yujian Zhang
@@ -13,11 +13,11 @@ package net.whily.android.history
 
 import android.content.Context
 import android.graphics.{Bitmap, BitmapFactory, Canvas, Color, Paint, RectF}
-import net.whily.scaland.Util
+import net.whily.scaland.Util._
 import android.util.Log
 
 /** Mange a tiles of maps and draw to Canvas.
-  * 
+  *
   * Map tiles are saved in res/drawable as 256x256 PNG files.  Zoom
   * level 0 contains the map files with original resolution, while
   * zoom level 1, 2, ..., are scaled-down (i.e. zoom out) version of
@@ -26,7 +26,7 @@ import android.util.Log
   * level that such zooming out operation is possible for 256x256
   * tiles. For example, if map size is 2048x1024, then maximum zoom
   * level is 2.
-  * 
+  *
   * It is also possible to have negative zoom levels (i.e. zoom
   * in). The intention is to suppose very high density screens
   * (e.g. xxhdpi) while original resolution is just too dense for
@@ -36,15 +36,26 @@ import android.util.Log
 class TileMap(context: Context, zoomLevel: Int) {
   // Blue Marble  Land Surface, Shallow Water, and Shaded Topography Eastern Hemisphere map
   // World file is from http://grasswiki.osgeo.org/wiki/Blue_Marble
-  private val worldFile = new WorldFile(0.008333333333333, -0.008333333333333, 
+  private val worldFile = new WorldFile(0.008333333333333, -0.008333333333333,
                                         0.00416666666666665, 89.99583333333334)
   // The following parameters are related to how we crop the map.
   private val mapX    = 4096    // Number of pixels in X dimension (west-east)
   private val mapY    = 4096    // Number of pixels in Y dimension (north-south)
-  private val mapLeft = 11700   // The left (west) of the map 
+  private val mapLeft = 11700   // The left (west) of the map
   private val mapTop  = 5000    // The top (north) of the map
 
   private val tileSize = 256
+
+  private val capitalTextSizeSp    = 18
+  private val provinceTextSizeSp   = 16
+  private val prefectureTextSizeSp = 14
+  private val countyTextSizeSp     = 12
+  private val townTextSizeSp       = 10
+  private val capitalTextSizePx    = sp2px(capitalTextSizeSp, context)
+  private val provinceTextSizePx   = sp2px(provinceTextSizeSp, context)
+  private val prefectureTextSizePx = sp2px(prefectureTextSizeSp, context)
+  private val countyTextSizePx     = sp2px(countyTextSizeSp, context)
+  private val townTextSizePx       = sp2px(townTextSizeSp, context)
 
   // TODO: adjust for zoom level.
   private val nTileX = mapX / tileSize
@@ -54,7 +65,7 @@ class TileMap(context: Context, zoomLevel: Int) {
 
   Log.d("TileMap", "Initialize")
 
-  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double, 
+  def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double,
            screenZoomLevel: Int, userLon: Double, userLat: Double) {
     // Ignore source/destination density by using RectF version of drawBitmap.
 
@@ -82,7 +93,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           if (maps(index) == null) {
             val tileZoomLevel = if (screenZoomLevel < 0) 0 else screenZoomLevel
             maps(index) = BitmapFactory.decodeResource(context.getResources(),
-              Util.getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
+              getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
           }
           canvas.drawBitmap(maps(index), null, tileRect, paint)
         } else {
@@ -111,37 +122,38 @@ class TileMap(context: Context, zoomLevel: Int) {
     val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(placeLon - centerLon)).asInstanceOf[Float]
     val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(placeLat - centerLat)).asInstanceOf[Float]
 
-    paint.setColor(Color.rgb(0x1f, 0x5e, 0x67))
+    paint.setColor(Color.rgb(0x0f, 0x98, 0xd4))
+    val baseUnit = 0.5f * dp2px(1, context)
     placeType match {
-      case PlaceType.Capital => 
+      case PlaceType.Capital =>
         paint.setStyle(Paint.Style.STROKE)
-        canvas.drawCircle(x, y, 16f, paint)
-        canvas.drawCircle(x, y, 12f, paint)
-        canvas.drawCircle(x, y, 8f, paint)
-      case PlaceType.Province => 
+        canvas.drawCircle(x, y, 16f * baseUnit, paint)
+        canvas.drawCircle(x, y, 12f * baseUnit, paint)
+        canvas.drawCircle(x, y, 8f * baseUnit, paint)
+      case PlaceType.Province =>
         paint.setStyle(Paint.Style.STROKE)
-        canvas.drawCircle(x, y, 14f, paint)
-        canvas.drawCircle(x, y, 6f, paint)
-      case PlaceType.Prefecture => 
+        canvas.drawCircle(x, y, 14f * baseUnit, paint)
+        canvas.drawCircle(x, y, 6f * baseUnit, paint)
+      case PlaceType.Prefecture =>
         paint.setStyle(Paint.Style.STROKE)
-        canvas.drawCircle(x, y, 12f, paint)
+        canvas.drawCircle(x, y, 12f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
-        canvas.drawCircle(x, y, 6f, paint)
-      case PlaceType.County => 
+        canvas.drawCircle(x, y, 6f * baseUnit, paint)
+      case PlaceType.County =>
         paint.setStyle(Paint.Style.STROKE)
-        canvas.drawCircle(x, y, 10f, paint)
-      case PlaceType.Town => 
+        canvas.drawCircle(x, y, 10f * baseUnit, paint)
+      case PlaceType.Town =>
         paint.setStyle(Paint.Style.FILL)
-        canvas.drawCircle(x, y, 8f, paint)
+        canvas.drawCircle(x, y, 8f * baseUnit, paint)
     }
-    paint.setColor(Color.BLACK)
+    paint.setColor(Color.WHITE)
 
     val textSize = placeType match {
-      case PlaceType.Capital => 44f
-      case PlaceType.Province => 42f
-      case PlaceType.Prefecture => 40f
-      case PlaceType.County => 38f
-      case PlaceType.Town => 36f
+      case PlaceType.Capital => capitalTextSizePx
+      case PlaceType.Province => provinceTextSizePx
+      case PlaceType.Prefecture => prefectureTextSizePx
+      case PlaceType.County => countyTextSizePx
+      case PlaceType.Town => townTextSizePx
     }
     paint.setTextSize(textSize)
     canvas.drawText(text, x + 10, y, paint)
@@ -154,7 +166,7 @@ class TileMap(context: Context, zoomLevel: Int) {
   /** Return latitude difference given pixel differnce in y-coordinate. */
   def latDiff(pixelDiff: Double) = worldFile.latDiff(pixelDiff)
 
-  private val places = 
+  private val places =
     Array(Place("洛阳", 34.631514, 112.454681, PlaceType.Capital),   // To be confirmed
           Place("长安", 34.266667, 108.9),        // To be confirmed
           Place("武關", 33.71,110.35, PlaceType.Town),        // To be confirmed
@@ -302,7 +314,7 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("郁林郡", 22.633333, 110.15),    // 布山县/玉林市 To be confirmed
           Place("合浦郡", 21.675, 109.193056),    // 合浦县/合浦县 To be confirmed
           Place("交趾郡", 21.183333, 106.05),    // 龙编县/北宁市? To be confirmed
-          Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed 
+          Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed
           Place("日南郡", 16.830278, 107.097222)    // 西卷县/東河市 To be confirmed
     )
 }
