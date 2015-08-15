@@ -3,7 +3,7 @@
  *
  * @author  Yujian Zhang <yujian{dot}zhang[at]gmail(dot)com>
  *
- * License: 
+ * License:
  *   GNU General Public License v2
  *   http://www.gnu.org/licenses/gpl-2.0.html
  * Copyright (C) 2014 Yujian Zhang
@@ -42,11 +42,13 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   private val dpi = Math.min(context.getResources().getDisplayMetrics().xdpi,
                              context.getResources().getDisplayMetrics().ydpi)
 
-  // Customize fonts.
-  private val font = Typeface.createFromAsset(context.getAssets(), "font.ttf")
   private val paint = new Paint()
   paint.setAntiAlias(true)
-  paint.setTypeface(font)
+
+  // Uncomment following two lines to enable customize fonts. Fonts should be placed
+  // under directory assets.
+  // private val font = Typeface.createFromAsset(context.getAssets(), "fonts.TTF")
+  // paint.setTypeface(font)
 
   val locMgr = context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
   val loc = locMgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
@@ -81,7 +83,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
 
     scaleDetector.onTouchEvent(event)
     true
-  }  
+  }
 
   override protected def onDraw(canvas: Canvas) {
     canvas.drawColor(Color.BLACK)
@@ -89,7 +91,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     if (map == null) {
       map = new TileMap(context, 0)
     }
-    map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel, 
+    map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel,
              userLon, userLat)
   }
 
