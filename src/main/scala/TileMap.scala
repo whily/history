@@ -127,21 +127,28 @@ class TileMap(context: Context, zoomLevel: Int) {
     placeType match {
       case PlaceType.Capital =>
         paint.setStyle(Paint.Style.STROKE)
+        paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 16f * baseUnit, paint)
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
         canvas.drawCircle(x, y, 8f * baseUnit, paint)
+        paint.setStyle(Paint.Style.FILL)        
       case PlaceType.Province =>
         paint.setStyle(Paint.Style.STROKE)
+        paint.setStrokeWidth(2.0f * baseUnit)        
         canvas.drawCircle(x, y, 14f * baseUnit, paint)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
+        paint.setStyle(Paint.Style.FILL)        
       case PlaceType.Prefecture =>
         paint.setStyle(Paint.Style.STROKE)
+        paint.setStrokeWidth(2.0f * baseUnit)        
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
       case PlaceType.County =>
         paint.setStyle(Paint.Style.STROKE)
+        paint.setStrokeWidth(2.0f * baseUnit)        
         canvas.drawCircle(x, y, 10f * baseUnit, paint)
+        paint.setStyle(Paint.Style.FILL)        
       case PlaceType.Town =>
         paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 8f * baseUnit, paint)
