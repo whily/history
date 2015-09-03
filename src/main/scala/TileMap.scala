@@ -66,6 +66,9 @@ class TileMap(context: Context, zoomLevel: Int) {
 
   private val maps = new Array[Bitmap](nTileX * nTileY)
 
+  // Boudning rectangles of the drawn features and labels.
+  private var boundingRects: List[RectF] = Nil
+
   Log.d("TileMap", "Initialize")
 
   def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double,
@@ -105,6 +108,17 @@ class TileMap(context: Context, zoomLevel: Int) {
       }
     }
 
+    // We use the straighforward (and not optimal) method to draw labels
+    // with one loop.
+    // Basically, each feature/lable is drawn if
+    //   * the bounding rectangle of the feature is fully contained in the canvas
+    //     and does not intersect existing boudning rectangles, and
+    //   * the bounding rectangle of the label (with maximum 8 positions) is fully
+    //     contained in the canvas and does not intersect existing bouding rectangles
+    // After one feature/lable is drawn, the bounding rectangles of the feature and label
+    // will be added in the existing list.
+    // We don't use any joint optimization approach.
+    boundingRects = Nil
     for (place <- places) {
       drawPointLabel(screenZoomLevel, canvasWidth, canvasHeight, centerLon, centerLat,
         place.lon, place.lat, place.ptype, place.name, canvas, paint)
@@ -127,7 +141,14 @@ class TileMap(context: Context, zoomLevel: Int) {
 
     paint.setColor(Color.rgb(0x0f, 0x98, 0xd4))
     val baseUnit = 0.5f * dp2px(1, context)
-    var labelRadius = 0.0f
+    val labelRadius = baseUnit * (placeType match {
+      case PlaceType.Capital => 18f
+      case PlaceType.Province => 16f
+      case PlaceType.Prefecture => 14f
+      case PlaceType.County => 12f
+      case PlaceType.Town => 10f
+    })
+
     placeType match {
       case PlaceType.Capital =>
         paint.setStyle(Paint.Style.STROKE)
@@ -138,7 +159,6 @@ class TileMap(context: Context, zoomLevel: Int) {
         // FILL style is needed to ensure correct drawing of the text.
         // Applicable for similar calls below.
         paint.setStyle(Paint.Style.FILL)
-        labelRadius = 18f * baseUnit
 
       case PlaceType.Province =>
         paint.setStyle(Paint.Style.STROKE)
@@ -146,7 +166,6 @@ class TileMap(context: Context, zoomLevel: Int) {
         canvas.drawCircle(x, y, 14f * baseUnit, paint)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
-        labelRadius = 16f * baseUnit
         
       case PlaceType.Prefecture =>
         paint.setStyle(Paint.Style.STROKE)
@@ -154,19 +173,16 @@ class TileMap(context: Context, zoomLevel: Int) {
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
-        labelRadius = 14f * baseUnit
 
       case PlaceType.County =>
         paint.setStyle(Paint.Style.STROKE)
         paint.setStrokeWidth(2.0f * baseUnit)        
         canvas.drawCircle(x, y, 10f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
-        labelRadius = 12f * baseUnit
 
       case PlaceType.Town =>
         paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 8f * baseUnit, paint)
-        labelRadius = 10f * baseUnit        
     }
     paint.setColor(Color.WHITE)
 
