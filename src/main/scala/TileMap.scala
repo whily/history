@@ -139,6 +139,8 @@ class TileMap(context: Context, zoomLevel: Int) {
     val x = canvasWidth / 2 + (scalingFactor * worldFile.xDiff(placeLon - centerLon)).asInstanceOf[Float]
     val y = canvasHeight / 2 + (scalingFactor * worldFile.yDiff(placeLat - centerLat)).asInstanceOf[Float]
 
+    val screenRect = new RectF(0f, 0f, canvasWidth, canvasHeight)
+
     paint.setColor(Color.rgb(0x0f, 0x98, 0xd4))
     val baseUnit = 0.5f * dp2px(1, context)
     val labelRadius = baseUnit * (placeType match {
@@ -148,6 +150,39 @@ class TileMap(context: Context, zoomLevel: Int) {
       case PlaceType.County => 12f
       case PlaceType.Town => 10f
     })
+
+    val pointBoundingRect = new RectF(x - labelRadius, y - labelRadius,
+      x + labelRadius, y + labelRadius)
+
+    // Check whether the bounding rectangle of the feature is fully contained in the canvas.
+    if (!screenRect.contains(pointBoundingRect)) {
+      return
+    }
+
+    val textSize = placeType match {
+      case PlaceType.Capital => capitalTextSizePx
+      case PlaceType.Province => provinceTextSizePx
+      case PlaceType.Prefecture => prefectureTextSizePx
+      case PlaceType.County => countyTextSizePx
+      case PlaceType.Town => townTextSizePx
+    }
+    paint.setTextSize(textSize)
+    paint.getTextBounds(text, 0, text.length(), textBounds)
+
+    val labelBoundingRect = new RectF(x + labelRadius, y - textBounds.exactCenterY(),
+      x + labelRadius + textBounds.width(), y - textBounds.exactCenterY() + textBounds.height())
+
+    if (!screenRect.contains(labelBoundingRect)) {
+      return
+    }
+
+    for (rect <- boundingRects) {
+      if ((RectF.intersects(rect, pointBoundingRect)) || (RectF.intersects(rect, labelBoundingRect))) {
+        return
+      }
+    }
+
+    boundingRects = pointBoundingRect :: labelBoundingRect :: boundingRects
 
     placeType match {
       case PlaceType.Capital =>
@@ -186,15 +221,6 @@ class TileMap(context: Context, zoomLevel: Int) {
     }
     paint.setColor(Color.WHITE)
 
-    val textSize = placeType match {
-      case PlaceType.Capital => capitalTextSizePx
-      case PlaceType.Province => provinceTextSizePx
-      case PlaceType.Prefecture => prefectureTextSizePx
-      case PlaceType.County => countyTextSizePx
-      case PlaceType.Town => townTextSizePx
-    }
-    paint.setTextSize(textSize)
-    paint.getTextBounds(text, 0, text.length(), textBounds)
     canvas.drawText(text, x + labelRadius, y - textBounds.exactCenterY(), paint)
     paint.setColor(savedColor)
   }
