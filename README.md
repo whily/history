@@ -1,7 +1,7 @@
 History
 =======
 
-An Android app to read Chinese history books (currently Sanguozhi/三国志), view 
+An Android app to read Chinese history books (currently Sanguozhi/三国志), view
 corresponding maps, and more.
 
 Features to include:
@@ -17,11 +17,11 @@ Development
 
 The following tools are needed to build History from source:
 
-* JDK version 6/7 from <http://www.java.com> if Java is not available. 
+* JDK version 6/7 from <http://www.java.com> if Java is not available.
   Note that JDK is preinstalled on Mac OS X and available via package manager
-  on many Linux systems. 
+  on many Linux systems.
 * Android SDK r23.0.5.
-* Scala (2.10.6)
+* Scala (2.11.6)
 * sbt (0.13.8)
 * [Inkscape](http://inkscape.org) and [ImageMagick](http://www.imagemagick.org)
   to generate icons.
@@ -30,7 +30,7 @@ The following tools are needed to build History from source:
 
 In project directory, run following command:
 
-        $ ./genart           
+        $ ./genart
 
 ### Download the maps
 
@@ -42,7 +42,7 @@ Download Blue Marble Land Surface, Shallow Water, and Shaded
 Topography Eastern Hemisphere map from
 <http://earthobservatory.nasa.gov/Features/BlueMarble/BlueMarble_2002.php/>.
 Direct link is:
-<http://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_shallow_topo_east.tif>. 
+<http://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_shallow_topo_east.tif>.
 
 2. Put `land_shallow_topo_east.tif` directly into `tools` directory.
 
@@ -61,18 +61,17 @@ To compile/run the code, run the following command to build the
    app and start it in a connected device:
 
         $ sbt android:run
-        
+
 ### Testing
 
 There are two types of testing can be performed:
 
 * Unit testing. Simply run the following command in shell:
-    
+
         $ sbt test
-        
+
 * Android integration testing. Run the following commands in sbt:
 
         > project tests
         > android:install
         > android:test
-
