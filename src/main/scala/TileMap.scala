@@ -14,6 +14,7 @@ package net.whily.android.history
 import android.content.Context
 import android.graphics.{Bitmap, BitmapFactory, Canvas, Color, Paint, Rect, RectF}
 import net.whily.scaland.Util._
+import net.whily.scaland.BitmapCache
 import android.util.Log
 
 /** Mange a tiles of maps and draw to Canvas.
@@ -45,6 +46,8 @@ class TileMap(context: Context, zoomLevel: Int) {
   private val mapTop  = 5000    // The top (north) of the map
 
   private val tileSize = 256
+
+  private val bitmapCache = new BitmapCache(context)
 
   private val capitalTextSizeSp    = 18
   private val provinceTextSizeSp   = 16
@@ -98,8 +101,8 @@ class TileMap(context: Context, zoomLevel: Int) {
         if (RectF.intersects(tileRect, canvasRect)) {
           if (maps(index) == null) {
             val tileZoomLevel = if (screenZoomLevel < 0) 0 else screenZoomLevel
-            maps(index) = BitmapFactory.decodeResource(context.getResources(),
-              getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j))
+            val resId = getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j)
+            maps(index) = bitmapCache.loadBitmap(resId)
           }
           canvas.drawBitmap(maps(index), null, tileRect, paint)
         } else {
@@ -201,17 +204,17 @@ class TileMap(context: Context, zoomLevel: Int) {
         canvas.drawCircle(x, y, 14f * baseUnit, paint)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
-        
+
       case PlaceType.Prefecture =>
         paint.setStyle(Paint.Style.STROKE)
-        paint.setStrokeWidth(2.0f * baseUnit)        
+        paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
 
       case PlaceType.County =>
         paint.setStyle(Paint.Style.STROKE)
-        paint.setStrokeWidth(2.0f * baseUnit)        
+        paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 10f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
 
