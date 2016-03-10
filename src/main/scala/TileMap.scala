@@ -104,7 +104,7 @@ class TileMap(context: Context, zoomLevel: Int) {
             val resId = getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j)
             maps(index) = bitmapCache.loadBitmap(resId)
           }
-          canvas.drawBitmap(maps(index), null, tileRect, paint)
+          canvas.drawBitmap(maps(index), null, tileRect, null)
         } else {
           maps(index) = null    // Release bitmap memory.
         }
