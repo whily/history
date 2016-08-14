@@ -193,10 +193,10 @@ class TileMap(context: Context, zoomLevel: Int) {
         paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 16f * baseUnit, paint)
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
+        paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 8f * baseUnit, paint)
         // FILL style is needed to ensure correct drawing of the text.
         // Applicable for similar calls below.
-        paint.setStyle(Paint.Style.FILL)
 
       case PlaceType.Province =>
         paint.setStyle(Paint.Style.STROKE)
@@ -209,14 +209,15 @@ class TileMap(context: Context, zoomLevel: Int) {
         paint.setStyle(Paint.Style.STROKE)
         paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 12f * baseUnit, paint)
-        paint.setStyle(Paint.Style.FILL)
         canvas.drawCircle(x, y, 6f * baseUnit, paint)
+        paint.setStyle(Paint.Style.FILL)
 
       case PlaceType.County =>
         paint.setStyle(Paint.Style.STROKE)
         paint.setStrokeWidth(2.0f * baseUnit)
         canvas.drawCircle(x, y, 10f * baseUnit, paint)
         paint.setStyle(Paint.Style.FILL)
+        canvas.drawCircle(x, y, 5f * baseUnit, paint)
 
       case PlaceType.Town =>
         paint.setStyle(Paint.Style.FILL)
