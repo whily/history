@@ -234,7 +234,7 @@ class TileMap(context: Context, zoomLevel: Int) {
   /** Return latitude difference given pixel differnce in y-coordinate. */
   def latDiff(pixelDiff: Double) = worldFile.latDiff(pixelDiff)
 
-  private val places =
+  private val ThreeKingdomPlaces =
     Array(Place("洛阳", 34.631514, 112.454681, PlaceType.Capital),   // To be confirmed
           Place("长安", 34.266667, 108.9),        // To be confirmed
           Place("武關", 33.71,110.35, PlaceType.Town),        // To be confirmed
@@ -385,4 +385,31 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("九真郡", 19.78, 105.71),    // 胥浦县/东山县 To be confirmed
           Place("日南郡", 16.830278, 107.097222)    // 西卷县/東河市 To be confirmed
     )
+
+  // 元和二十年
+  private val TangPlaces =
+    Array(
+      // 京兆府
+      Place("长安", 34.266667, 108.9, PlaceType.Capital),        // To be confirmed
+
+      // 鳳翔節度使
+      Place("鳳翔府", 34.56, 107.420556, PlaceType.Prefecture), // 治雍縣（今陝西鳳翔） To be confirmed
+
+      // 涇原節度使， 後稱彰義軍節度使
+      Place("涇州", 35.332, 107.353, PlaceType.Prefecture), // 治安定縣（今甘肅涇川） To be confirmed
+      Place("原州", 36.016667, 106.25, PlaceType.Prefecture), // 治平高縣（今寧夏固原） To be confirmed
+
+      // 邠寧節度使
+      Place("邠州", 35.054167, 108.081389, PlaceType.Prefecture), // 治新平縣（今陝西彬縣） To be confirmed
+
+      // 鄜坊節度使
+      Place("鄜州", 35.983333, 109.133333, PlaceType.Prefecture), // 治洛交縣（今陝西富縣） To be confirmed
+      Place("坊州", 35.579722, 109.263056, PlaceType.Prefecture), // 治中部縣（今陝西黃陵） To be confirmed
+
+      // 朔方節度使
+      Place("靈州", 38.1, 106.333333, PlaceType.Prefecture), // 治回樂縣（今寧夏吳忠） To be confirmed
+
+      Place("洛阳", 34.631514, 112.454681, PlaceType.Prefecture)   // To be confirmed
+    )
+  private val places = TangPlaces
 }
