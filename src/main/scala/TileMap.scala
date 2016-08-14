@@ -386,28 +386,46 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("日南郡", 16.830278, 107.097222)    // 西卷县/東河市 To be confirmed
     )
 
-  // 元和二十年
+  // 元和二十年.
+  // "To be confirmed" means that check is needed to verify with 中国历史地图集.
   private val TangPlaces =
     Array(
       // 京兆府
       Place("长安", 34.266667, 108.9, PlaceType.Capital),        // To be confirmed
+      Place("奉天", 34.496944, 108.248056, PlaceType.County), // 縣（今陝西乾縣）
 
       // 鳳翔節度使
-      Place("鳳翔府", 34.56, 107.420556, PlaceType.Prefecture), // 治雍縣（今陝西鳳翔） To be confirmed
+      Place("鳳翔", 34.56, 107.420556, PlaceType.Prefecture), // 府,治所在雍縣（今陝西鳳翔） To be confirmed
 
       // 涇原節度使， 後稱彰義軍節度使
-      Place("涇州", 35.332, 107.353, PlaceType.Prefecture), // 治安定縣（今甘肅涇川） To be confirmed
-      Place("原州", 36.016667, 106.25, PlaceType.Prefecture), // 治平高縣（今寧夏固原） To be confirmed
+      Place("涇州", 35.332, 107.353, PlaceType.Prefecture), // 治所在安定縣（今甘肅涇川） To be confirmed
+      Place("原州", 36.016667, 106.25, PlaceType.Prefecture), // 治所在平高縣（今寧夏固原） To be confirmed
 
       // 邠寧節度使
-      Place("邠州", 35.054167, 108.081389, PlaceType.Prefecture), // 治新平縣（今陝西彬縣） To be confirmed
+      Place("邠州", 35.054167, 108.081389, PlaceType.Prefecture), // 治所在新平縣（今陝西彬縣） To be confirmed
 
       // 鄜坊節度使
-      Place("鄜州", 35.983333, 109.133333, PlaceType.Prefecture), // 治洛交縣（今陝西富縣） To be confirmed
-      Place("坊州", 35.579722, 109.263056, PlaceType.Prefecture), // 治中部縣（今陝西黃陵） To be confirmed
+      Place("鄜州", 35.983333, 109.133333, PlaceType.Prefecture), // 治所在洛交縣（今陝西富縣） To be confirmed
+      Place("坊州", 35.579722, 109.263056, PlaceType.Prefecture), // 治所在中部縣（今陝西黃陵） To be confirmed
 
       // 朔方節度使
-      Place("靈州", 38.1, 106.333333, PlaceType.Prefecture), // 治回樂縣（今寧夏吳忠） To be confirmed
+      Place("靈州", 38.1, 106.333333, PlaceType.Prefecture), // 治所在回樂縣（今寧夏吳忠） To be confirmed
+
+      // 荊南節度使
+      Place("江陵", 30.133333, 112.5, PlaceType.Prefecture), // 府,即荊州，治所在江陵縣（今湖北省江陵縣）
+      Place("忠州", 30.3283, 108.047, PlaceType.Prefecture), // 治所在臨江縣（今重慶市忠縣）
+
+      // 湖南觀察使
+      Place("潭州", 28.196111, 112.972222, PlaceType.Prefecture), // 治所在長沙（今長沙）
+      Place("邵州", 27.25, 111.466667, PlaceType.Prefecture), // 治所在邵陽縣（今湖南省邵陽市）
+      Place("武岡", 26.359167, 110.310833, PlaceType.County), // 縣，属邵州（今湖南省城步苗族自治縣）
+      Place("衡州", 26.9, 112.6, PlaceType.Prefecture), // 治所在衡陽縣（今湖南省衡陽市）
+      Place("永州", 26.2215, 111.6169, PlaceType.Prefecture), // 治所在零陵縣（今湖南省永州市），GPS data from 零陵區
+      Place("郴州", 25.8, 113.05, PlaceType.Prefecture), // 治所在郴縣（今湖南省郴州市）
+
+      // 振武軍節度使
+      Place("單于都護府", 40.44943, 111.78640, PlaceType.Prefecture),
+        // （今內蒙古和林格爾北的土城子古城， searched on maps.bing.com for 古城子遗址, then looked up in http://dbsgeo.com/latlon/）
 
       Place("洛阳", 34.631514, 112.454681, PlaceType.Prefecture)   // To be confirmed
     )
