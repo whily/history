@@ -6,7 +6,7 @@
  * License:
  *   GNU General Public License v2
  *   http://www.gnu.org/licenses/gpl-2.0.html
- * Copyright (C) 2014 Yujian Zhang
+ * Copyright (C) 2014-2016 Yujian Zhang
  */
 
 package net.whily.android.history
@@ -17,7 +17,7 @@ import net.whily.scaland.Util._
 import net.whily.scaland.BitmapCache
 import android.util.Log
 
-/** Mange a tiles of maps and draw to Canvas.
+/** Manage a tiles of maps and draw to Canvas.
   *
   * Map tiles are saved in res/drawable as 256x256 PNG files.  Zoom
   * level 0 contains the map files with original resolution, while
@@ -387,7 +387,6 @@ class TileMap(context: Context, zoomLevel: Int) {
           Place("日南郡", 16.830278, 107.097222)    // 西卷县/東河市 To be confirmed
     )
 
-  // 元和二十年.
   // "To be confirmed" means that check is needed to verify with 中国历史地图集.
   private val TangPlaces =
     Array(
@@ -428,7 +427,20 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("單于都護府", 40.44943, 111.78640, PlaceType.Prefecture),
         // （今內蒙古和林格爾北的土城子古城， searched on maps.bing.com for 古城子遗址, then looked up in http://dbsgeo.com/latlon/）
 
-      Place("洛阳", 34.631514, 112.454681, PlaceType.Prefecture)   // To be confirmed
+      Place("洛阳", 34.631514, 112.454681, PlaceType.Prefecture),   // To be confirmed
+
+      // 魏博節度使
+      Place("魏州", 36.28954, 115.11817, PlaceType.Prefecture), // 治今河北大名縣 To be confirmed
+      Place("博州", 36.2729,  115.5909,  PlaceType.Prefecture), // 治今山東聊城市 To be confirmed
+      Place("相州", 36.1,     114.333333, PlaceType.Prefecture), // 治今河南安陽市 To be confirmed
+      Place("貝州", 37.06938, 115.65908, PlaceType.Prefecture), // 治今河北清河縣 To be confirmed
+      Place("衛州", 35.461786, 113.805389, PlaceType.Prefecture), // 治今河南輝縣市 To be confirmed
+      Place("澶州", 35.75,    115.016667, PlaceType.Prefecture), // 治今河南濮陽市 To be confirmed
+
+      // 淮西節度使
+      Place("蔡州", 33.007068, 114.362412, PlaceType.Prefecture), // 治今河南汝南 To be confirmed
+      Place("申州", 32.131783, 114.071128, PlaceType.Prefecture), // 治今河南信陽 To be confirmed
+      Place("光州", 32.146111, 115.138056, PlaceType.Prefecture) // 治今河南潢川 To be confirmed
     )
   private val places = TangPlaces
 }
