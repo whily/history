@@ -65,3 +65,9 @@ To compile/run the code, run the following command to build the
 To build a release version and start it in a connected device:
 
         $ sbt android:set-release android:run
+
+### Troubling shooting regarding app running
+
+1. If encountering error like `java.lang.RuntimeException: Unable to
+   start activity... Binary XML file line #6:` when starting the app,
+   make sure to allow the `Location` permission.
