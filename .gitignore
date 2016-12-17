@@ -1,6 +1,7 @@
 /bin
 /gen
 /res/drawable-*
+res/drawable/*
 local.properties
 proguard.cfg
 *.class
