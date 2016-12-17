@@ -440,7 +440,39 @@ class TileMap(context: Context, zoomLevel: Int) {
       // 淮西節度使
       Place("蔡州", 33.007068, 114.362412, PlaceType.Prefecture), // 治今河南汝南 To be confirmed
       Place("申州", 32.131783, 114.071128, PlaceType.Prefecture), // 治今河南信陽 To be confirmed
-      Place("光州", 32.146111, 115.138056, PlaceType.Prefecture) // 治今河南潢川 To be confirmed
+      Place("光州", 32.146111, 115.138056, PlaceType.Prefecture), // 治今河南潢川 To be confirmed
+
+      // 成德節度使
+      Place("恆州", 38.148561, 114.561653, PlaceType.Prefecture), // 治今河北正定縣 To be confirmed
+      Place("冀州", 37.551, 115.579, PlaceType.Prefecture), // 治今河北冀州市  To be confirmed
+      Place("趙州", 37.746389, 114.768889, PlaceType.Prefecture), // 治今河北趙縣  To be confirmed
+      Place("深州", 38.002, 115.559, PlaceType.Prefecture), // 治今河北深州市  To be confirmed
+
+      // 幽州節度使
+      Place("幽州", 39.916667, 116.383333, PlaceType.Prefecture), // 治今北京 To be confirmed
+      Place("檀州", 40.374444, 116.839444, PlaceType.Prefecture), // 治今北京密雲  To be confirmed
+      Place("薊州", 40.036389, 117.396944, PlaceType.Prefecture), // 治今天津薊縣  To be confirmed
+      Place("媯州", 40.416667, 115.516667, PlaceType.Prefecture), // 治今河北懷來  To be confirmed
+      Place("涿州", 39.486, 115.974, PlaceType.Prefecture), // 治今河北涿州  To be confirmed
+      Place("莫州", 38.712, 116.099, PlaceType.Prefecture), // 治今河北任丘北  To be confirmed
+      Place("瀛州", 38.447, 116.099, PlaceType.Prefecture), // 治今河北河間  To be confirmed
+      Place("平州", 39.9, 118.9, PlaceType.Prefecture), // 治今河北盧龍  To be confirmed
+      Place("營州", 41.433333, 120.166667, PlaceType.Prefecture), // 治今遼寧朝陽，唐末遷至今河北昌黎  To be confirmed
+
+      // 淄青節度使
+      Place("青州", 36.696667, 118.479722, PlaceType.Prefecture), // 治今山東青州市  To be confirmed
+      Place("淄州", 36.643611, 117.966944, PlaceType.Prefecture), // 治今山東淄川  To be confirmed
+      Place("齊州", 36.633333, 117.016667, PlaceType.Prefecture), // 治今山東濟南市  To be confirmed
+      Place("沂州", 35.05, 118.316667, PlaceType.Prefecture), // 治今山東臨沂  To be confirmed
+      Place("密州", 35.995278, 119.406667, PlaceType.Prefecture), // 治今山東諸城  To be confirmed
+      Place("海州", 34.6, 119.166667, PlaceType.Prefecture), // 治今江蘇連雲港西南海州鎮  To be confirmed
+      Place("登州", 37.8, 120.75, PlaceType.Prefecture), // 治今山東蓬萊  To be confirmed
+      Place("萊州", 37.179167, 119.933333, PlaceType.Prefecture), // 治今山東萊州市  To be confirmed
+      Place("曹州", 35.233333, 115.433333, PlaceType.Prefecture), // 治今山東菏澤  To be confirmed
+      Place("濮州", 35.566667, 115.5, PlaceType.Prefecture), // 治今山東鄄城  To be confirmed
+      Place("兗州", 35.55, 116.783333, PlaceType.Prefecture), // 治今山東兗州市  To be confirmed
+      Place("鄆州", 35.908333, 116.3, PlaceType.Prefecture) // 治今山東東平 To be confirmed
+      // Place("", , PlaceType.Prefecture), //   To be confirmed
     )
   private val places = TangPlaces
 }
