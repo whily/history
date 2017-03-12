@@ -40,12 +40,16 @@ class TileMap(context: Context, zoomLevel: Int) {
   private val worldFile = new WorldFile(0.008333333333333, -0.008333333333333,
                                         0.00416666666666665, 89.99583333333334)
   // The following parameters are related to how we crop the map.
-  private val mapX    = 4096    // Number of pixels in X dimension (west-east)
-  private val mapY    = 4096    // Number of pixels in Y dimension (north-south)
-  private val mapLeft = 11700   // The left (west) of the map
+  // TODO: adjust for zoom level.
+  private val nTileX  = 28
+  private val nTileY  = 16
+  private val mapLeft = 8628    // The left (west) of the map
   private val mapTop  = 5000    // The top (north) of the map
 
   private val tileSize = 256
+
+  private val mapX    = nTileX * tileSize    // Number of pixels in X dimension (west-east)
+  private val mapY    = nTileY * tileSize    // Number of pixels in Y dimension (north-south)
 
   private val bitmapCache = new BitmapCache(context)
 
@@ -60,14 +64,8 @@ class TileMap(context: Context, zoomLevel: Int) {
   private val countyTextSizePx     = sp2px(countyTextSizeSp, context)
   private val townTextSizePx       = sp2px(townTextSizeSp, context)
 
-  // TODO: adjust for zoom level.
-  private val nTileX = mapX / tileSize
-  private val nTileY = mapY / tileSize
-
   // Measure text width/height.
   private val textBounds = new Rect()
-
-  private val maps = new Array[Bitmap](nTileX * nTileY)
 
   // Boudning rectangles of the drawn features and labels.
   private var boundingRects: List[RectF] = Nil
@@ -99,14 +97,12 @@ class TileMap(context: Context, zoomLevel: Int) {
         }
         val tileRect = new RectF(left, top, left + displayTileSize, top + displayTileSize)
         if (RectF.intersects(tileRect, canvasRect)) {
-          if (maps(index) == null) {
-            val tileZoomLevel = if (screenZoomLevel < 0) 0 else screenZoomLevel
-            val resId = getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j)
-            maps(index) = bitmapCache.loadBitmap(resId)
+          val tileZoomLevel = if (screenZoomLevel < 0) 0 else screenZoomLevel
+          val resId = getDrawableId(context, "map_" + tileZoomLevel + "_" + i + "_" + j)
+          val bitmap  = bitmapCache.loadBitmap(resId)
+          if (bitmap != null) {
+            canvas.drawBitmap(bitmap, null, tileRect, null)
           }
-          canvas.drawBitmap(maps(index), null, tileRect, null)
-        } else {
-          maps(index) = null    // Release bitmap memory.
         }
       }
     }
@@ -471,7 +467,45 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("曹州", 35.233333, 115.433333, PlaceType.Prefecture), // 治今山東菏澤  To be confirmed
       Place("濮州", 35.566667, 115.5, PlaceType.Prefecture), // 治今山東鄄城  To be confirmed
       Place("兗州", 35.55, 116.783333, PlaceType.Prefecture), // 治今山東兗州市  To be confirmed
-      Place("鄆州", 35.908333, 116.3, PlaceType.Prefecture) // 治今山東東平 To be confirmed
+      Place("鄆州", 35.908333, 116.3, PlaceType.Prefecture), // 治今山東東平 To be confirmed
+
+      // 隴右節度使
+      // Place("鄯州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("秦州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("河州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("渭州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("蘭州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("臨州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("武州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("洮州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("岷州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("廓州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("疊州", , PlaceType.Prefecture), //   To be confirmed
+      // Place("宕州", , PlaceType.Prefecture), //   To be confirmed
+
+      // // 河西節度使
+      Place("涼州", 37.928, 102.641, PlaceType.Prefecture), // 治今武威市  Confirmed
+      Place("甘州", 39.014444, 100.665833, PlaceType.Prefecture), // 治今甘肅省張掖市 Confirmed
+      Place("肅州", 39.740986, 98.503418, PlaceType.Prefecture), // 治今甘肅省酒泉市 Confirmed
+      Place("瓜州", 40.2467, 96.2027, PlaceType.Prefecture), // 治今甘肅省瓜州縣鎖陽城遺址 Confirmed
+      Place("沙州", 40.139246, 94.644500, PlaceType.Prefecture), // 治今敦煌沙州城遺址, Confirmed
+
+      // 北庭節度使
+      Place("庭州", 44.0683584,89.2119097, PlaceType.Prefecture), //  治今吉木萨尔县城北12公里北庭乡,北庭故城. Confirmed
+      Place("伊州", 42.8306, 93.505, PlaceType.Prefecture), // 治今新疆维吾尔自治区哈密市伊州区 Confirmed
+      Place("西州", 42.856405,89.5264445, PlaceType.Prefecture), // 治今吐鲁番市东南高昌故城  Confirmed
+
+      // 安西節度使
+      Place("龟兹", 41.566667, 82.95, PlaceType.Prefecture), // 治今库车 Confirmed
+      Place("焉耆", 41.9670519, 86.4605719, PlaceType.Prefecture), // 治今博格达沁故城  Confirmed
+      Place("疏勒", 39.466667, 75.983333, PlaceType.Prefecture), // 治今喀什市  Confirmed
+      Place("于阗", 37.100404, 79.7724963, PlaceType.Prefecture), // 治今和田西部的约特干 (Not consistent with 中国历史地图集)
+      Place("碎叶", 42.805222, 75.199889, PlaceType.Prefecture), // 即今阿克·贝希姆遗址，位於今吉尔吉斯斯坦楚河州托克馬克市西南8公里处. To be confirmed
+      Place("孽多城", 35.920833, 74.308333, PlaceType.Town),  // 小勃律首都, 治今巴基斯坦吉爾吉特.  Confirmed
+
+      // 吐蕃
+      Place("邏些城", 29.65, 91.1, PlaceType.Capital) // 治今拉薩. Confirmed
+
       // Place("", , PlaceType.Prefecture), //   To be confirmed
     )
   private val places = TangPlaces

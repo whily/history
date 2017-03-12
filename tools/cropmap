@@ -8,25 +8,18 @@ tile=256
 # Parameter set for Blue Marble map
 file=land_shallow_topo_east.tif
 
-# Suitable for Three Kingdoms.
+# Parameters to crop the map we need.
+lon=28
 lat=16
-lon=16
-west=11700
+west=8628
 north=5000
-
-# Suitable for Tang Dynasty.
-# We may eventually use this big map. But for now, let's save the space.
-#lat=48
-#lon=24
-#west=5400
-#north=3000
 
 convert $file -crop $((lon*tile))x$((lat*tile))+${west}+${north} china.png
 
 for (( i=0; i<$lon; i++ ))
 do
     for (( j=0; j<$lat; j++ ))
-    do 
+    do
         convert china.png -crop ${tile}x${tile}+$((west+i*tile))+$((north+j*tile)) $mapdir/map_0_${i}_${j}.png
     done
 done
