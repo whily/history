@@ -7,9 +7,13 @@ proguard.cfg
 *.class
 *.log
 .cache
+.idea
 libs/
 lib/
 proguard_cache/
+proguard*
+*.png
+*.tif
 
 # sbt specific
 dist/*
@@ -21,6 +25,3 @@ project/plugins/project/
 
 # Scala-IDE specific
 .scala_dependencies
-
-# Ensime specific
-.ensime*
