@@ -386,6 +386,14 @@ class TileMap(context: Context, zoomLevel: Int) {
   // "To be confirmed" means that check is needed to verify with 中国历史地图集.
   private val TangPlaces =
     Array(
+      // Province to be confirmed.
+      Place("武關", 33.71,110.35, PlaceType.Town),        // To be confirmed
+      Place("華州", 34.45, 109.75, PlaceType.Prefecture), // 治所在鄭縣（今華縣） To be confirmed
+      Place("同州", 34.783611, 109.976667, PlaceType.Prefecture), // 治所在武鄉縣（今陝西省大荔縣） To be confirmed
+      Place("陝州", 34.716667, 111.1, PlaceType.Prefecture), // 治所在陝縣（今河南省三門峽市陝州區）  To be confirmed
+      Place("虢州", 34.525, 110.866667, PlaceType.Prefecture), // 治所在弘農縣（今河南省靈寶市）   To be confirmed
+      Place("蒲州", 34.83444, 110.3245, PlaceType.Prefecture), // 治所在河東縣（今山西省永濟市西南蒲州鎮）  To be confirmed
+
       // 京兆府
       Place("长安", 34.266667, 108.9, PlaceType.Capital),        // To be confirmed
       Place("奉天", 34.496944, 108.248056, PlaceType.County), // 縣（今陝西乾縣）
@@ -406,6 +414,15 @@ class TileMap(context: Context, zoomLevel: Int) {
 
       // 朔方節度使
       Place("靈州", 38.1, 106.333333, PlaceType.Prefecture), // 治所在回樂縣（今寧夏吳忠） To be confirmed
+      Place("夏州", 38.000239, 108.851124, PlaceType.Prefecture), // 治所在朔方縣(今陝西省靖邊縣北白城子)   To be confirmed
+      Place("鹽州", 37.449722, 107.828889, PlaceType.Prefecture), // 治所在五原縣（今陝西省定邊縣）  To be confirmed
+      Place("綏州", 37.506944, 110.258889, PlaceType.Prefecture), // 治所在上縣（今綏德縣）  To be confirmed
+      Place("銀州", 37.96466, 109.82087, PlaceType.Prefecture), // 治所在儒林縣（今陝西省橫山縣東黨岔鎮） To be confirmed
+      Place("豐州", 41.09, 108.266111, PlaceType.Prefecture), // 內蒙古自治區五原縣南?? To be confirmed
+      Place("勝州", 39.866667, 111.233333, PlaceType.Prefecture), // 治所在榆林縣（今內蒙古自治區准格爾旗東北十二連城, GPS coordinates is for 准格爾旗）  To be confirmed
+      Place("西受降城", 40.765961, 107.391206, PlaceType.Town), // 治今內蒙古巴彥淖爾市內  To be confirmed
+      Place("中受降城", 40.633333, 109.983333, PlaceType.Town), // 治今內蒙古包頭市內  To be confirmed
+      Place("東受降城", 40.816667, 111.65, PlaceType.Town), // 治今內蒙古呼和浩特市內  To be confirmed
 
       // 荊南節度使
       Place("江陵", 30.133333, 112.5, PlaceType.Prefecture), // 府,即荊州，治所在江陵縣（今湖北省江陵縣）
@@ -470,11 +487,11 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("鄆州", 35.908333, 116.3, PlaceType.Prefecture), // 治今山東東平 To be confirmed
 
       // 隴右節度使
-      // Place("鄯州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("秦州", , PlaceType.Prefecture), //   To be confirmed
+      Place("鄯州", 36.516667, 102.416667, PlaceType.Prefecture), //  治今青海省海東市樂都區 To be confirmed
+      Place("秦州", 34.580833, 105.724167, PlaceType.Prefecture), //  治今甘肅省天水市秦州區 To be confirmed
       // Place("河州", , PlaceType.Prefecture), //   To be confirmed
       // Place("渭州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("蘭州", , PlaceType.Prefecture), //   To be confirmed
+      Place("蘭州", 36.016667, 103.866667, PlaceType.Prefecture), //   甘肅省蘭州市 To be confirmed
       // Place("臨州", , PlaceType.Prefecture), //   To be confirmed
       // Place("武州", , PlaceType.Prefecture), //   To be confirmed
       // Place("洮州", , PlaceType.Prefecture), //   To be confirmed
@@ -502,6 +519,7 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("于阗", 37.100404, 79.7724963, PlaceType.Prefecture), // 治今和田西部的约特干 (Not consistent with 中国历史地图集)
       Place("碎叶", 42.805222, 75.199889, PlaceType.Prefecture), // 即今阿克·贝希姆遗址，位於今吉尔吉斯斯坦楚河州托克馬克市西南8公里处. To be confirmed
       Place("孽多城", 35.920833, 74.308333, PlaceType.Town),  // 小勃律首都, 治今巴基斯坦吉爾吉特.  Confirmed
+      Place("怛羅斯", 42.525, 72.233333, PlaceType.Town),  // 接近哈薩克斯坦的塔拉茲.  Confirmed
 
       // 吐蕃
       Place("邏些城", 29.65, 91.1, PlaceType.Capital) // 治今拉薩. Confirmed
