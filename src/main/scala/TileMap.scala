@@ -407,10 +407,14 @@ class TileMap(context: Context, zoomLevel: Int) {
 
       // 邠寧節度使
       Place("邠州", 35.054167, 108.081389, PlaceType.Prefecture), // 治所在新平縣（今陝西彬縣） To be confirmed
+      Place("寧州", 35.5375, 108.155278, PlaceType.Prefecture), // 治今甘肅寧縣  To be confirmed
+      Place("慶州", 35.739, 107.632, PlaceType.Prefecture), // 治今甘肅慶陽  To be confirmed
 
       // 鄜坊節度使
       Place("鄜州", 35.983333, 109.133333, PlaceType.Prefecture), // 治所在洛交縣（今陝西富縣） To be confirmed
       Place("坊州", 35.579722, 109.263056, PlaceType.Prefecture), // 治所在中部縣（今陝西黃陵） To be confirmed
+      Place("丹州", 36.099444, 110.128333, PlaceType.Prefecture), // 治今陝西宜川  To be confirmed
+      Place("延州", 36.5855, 109.4897, PlaceType.Prefecture), // 治今陝西省延安市東北  To be confirmed
 
       // 朔方節度使
       Place("靈州", 38.1, 106.333333, PlaceType.Prefecture), // 治所在回樂縣（今寧夏吳忠） To be confirmed
@@ -420,6 +424,7 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("銀州", 37.96466, 109.82087, PlaceType.Prefecture), // 治所在儒林縣（今陝西省橫山縣東黨岔鎮） To be confirmed
       Place("豐州", 41.09, 108.266111, PlaceType.Prefecture), // 內蒙古自治區五原縣南?? To be confirmed
       Place("勝州", 39.866667, 111.233333, PlaceType.Prefecture), // 治所在榆林縣（今內蒙古自治區准格爾旗東北十二連城, GPS coordinates is for 准格爾旗）  To be confirmed
+      Place("麟州", 38.819444, 110.489722, PlaceType.Prefecture), // 治今陝西神木  To be confirmed
       Place("西受降城", 40.765961, 107.391206, PlaceType.Town), // 治今內蒙古巴彥淖爾市內  To be confirmed
       Place("中受降城", 40.633333, 109.983333, PlaceType.Town), // 治今內蒙古包頭市內  To be confirmed
       Place("東受降城", 40.816667, 111.65, PlaceType.Town), // 治今內蒙古呼和浩特市內  To be confirmed
@@ -489,16 +494,16 @@ class TileMap(context: Context, zoomLevel: Int) {
       // 隴右節度使
       Place("鄯州", 36.516667, 102.416667, PlaceType.Prefecture), //  治今青海省海東市樂都區 To be confirmed
       Place("秦州", 34.580833, 105.724167, PlaceType.Prefecture), //  治今甘肅省天水市秦州區 To be confirmed
-      // Place("河州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("渭州", , PlaceType.Prefecture), //   To be confirmed
+      Place("河州", 35.601, 103.211, PlaceType.Prefecture), //  治今甘肅省臨夏 To be confirmed
+      Place("渭州", 35.083333, 104.65, PlaceType.Prefecture), //  治今甘肅省隴西縣 To be confirmed
       Place("蘭州", 36.016667, 103.866667, PlaceType.Prefecture), //   甘肅省蘭州市 To be confirmed
-      // Place("臨州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("武州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("洮州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("岷州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("廓州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("疊州", , PlaceType.Prefecture), //   To be confirmed
-      // Place("宕州", , PlaceType.Prefecture), //   To be confirmed
+      //Place("臨州", , PlaceType.Prefecture), // 治今甘肅省臨洮縣???  To be confirmed
+      Place("武州", 33.217, 105.146, PlaceType.Prefecture), // 治今甘肅省武都  To be confirmed
+      Place("洮州", 34.7, 103.666667, PlaceType.Prefecture), // 治今甘肅省臨潭縣  To be confirmed
+      Place("岷州", 35.379422, 103.8564, PlaceType.Prefecture), // 治今甘肅省臨洮縣??  To be confirmed
+      Place("廓州", 36.04015, 101.433298, PlaceType.Prefecture), // 治今青海省貴德縣  To be confirmed
+      Place("疊州", 34, 103.55, PlaceType.Prefecture), // 治今甘肅省迭部縣  To be confirmed
+      Place("宕州", 33.633333, 104.333333, PlaceType.Prefecture), // 治今甘肅省舟曲縣  To be confirmed
 
       // // 河西節度使
       Place("涼州", 37.928, 102.641, PlaceType.Prefecture), // 治今武威市  Confirmed
@@ -521,10 +526,14 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("孽多城", 35.920833, 74.308333, PlaceType.Town),  // 小勃律首都, 治今巴基斯坦吉爾吉特.  Confirmed
       Place("怛羅斯", 42.525, 72.233333, PlaceType.Town),  // 接近哈薩克斯坦的塔拉茲.  Confirmed
 
+      // 劍南節度使
+      Place("益州", 30.659722, 104.063333, PlaceType.Prefecture), // 治今四川省成都市
+      Place("維州", 31.416667, 103.166667, PlaceType.Prefecture), // 今四川省理縣東北  To be confirmed
+
       // 吐蕃
       Place("邏些城", 29.65, 91.1, PlaceType.Capital) // 治今拉薩. Confirmed
 
-      // Place("", , PlaceType.Prefecture), //   To be confirmed
+      // Place("", , PlaceType.Prefecture), // 治今  To be confirmed
     )
   private val places = TangPlaces
 }
