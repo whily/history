@@ -71,3 +71,17 @@ To build a release version and start it in a connected device:
 1. If encountering error like `java.lang.RuntimeException: Unable to
    start activity... Binary XML file line #6:` when starting the app,
    make sure to allow the `Location` permission.
+
+2. When running script `tools/cropmap`, one may encounter ImageMagick
+   error "convert-im6.q16: width or height exceeds limit". The
+   resource limitation from ImageMagick should be lifted by modifying the
+   policy.xml file. In Ubuntu, it is `/etc/ImageMagick-6/policy.xml`.
+   Change the lines containing the following resource names according
+   to below.
+
+    <policy domain="resource" name="memory" value="2GiB"/>
+    <policy domain="resource" name="map" value="4GiB"/>
+    <policy domain="resource" name="width" value="24KP"/>
+    <policy domain="resource" name="height" value="24KP"/>
+    <policy domain="resource" name="area" value="800MP"/>
+    <policy domain="resource" name="disk" value="8GiB"/>

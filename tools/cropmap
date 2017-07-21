@@ -9,11 +9,12 @@ tile=256
 file=land_shallow_topo_east.tif
 
 # Parameters to crop the map we need.
-lon=28
+lon=35
 lat=16
-west=8628
+west=6836
 north=5000
 
+# Command line options for ImageMagick to lift the resource limitations.
 convert $file -crop $((lon*tile))x$((lat*tile))+${west}+${north} china.png
 
 for (( i=0; i<$lon; i++ ))

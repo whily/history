@@ -41,9 +41,9 @@ class TileMap(context: Context, zoomLevel: Int) {
                                         0.00416666666666665, 89.99583333333334)
   // The following parameters are related to how we crop the map.
   // TODO: adjust for zoom level.
-  private val nTileX  = 28
+  private val nTileX  = 35
   private val nTileY  = 16
-  private val mapLeft = 8628    // The left (west) of the map
+  private val mapLeft = 6836    // The left (west) of the map
   private val mapTop  = 5000    // The top (north) of the map
 
   private val tileSize = 256
