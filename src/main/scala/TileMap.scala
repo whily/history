@@ -542,7 +542,7 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("疊州", 34, 103.55, PlaceType.Prefecture), // 治今甘肅省迭部縣  To be confirmed
       Place("宕州", 33.633333, 104.333333, PlaceType.Prefecture), // 治今甘肅省舟曲縣  To be confirmed
 
-      // // 河西節度使
+      // 河西節度使
       Place("涼州", 37.928, 102.641, PlaceType.Prefecture), // 治今武威市  Confirmed
       Place("甘州", 39.014444, 100.665833, PlaceType.Prefecture), // 治今甘肅省張掖市 Confirmed
       Place("肅州", 39.740986, 98.503418, PlaceType.Prefecture), // 治今甘肅省酒泉市 Confirmed
@@ -563,9 +563,49 @@ class TileMap(context: Context, zoomLevel: Int) {
       Place("孽多城", 35.920833, 74.308333, PlaceType.Town),  // 小勃律首都, 治今巴基斯坦吉爾吉特.  Confirmed
       Place("怛羅斯", 42.525, 72.233333, PlaceType.Town),  // 接近哈薩克斯坦的塔拉茲.  Confirmed
 
+      // 河東節度使
+      Place("太原", 37.869444, 112.560278, PlaceType.Prefecture), // 治今山西太原  To be confirmed
+      Place("忻州", 38.4163, 112.7341, PlaceType.Prefecture), // 治今山西忻州  To be confirmed
+      Place("代州", 39.063611, 112.943056, PlaceType.Prefecture), // 治今山西代縣  To be confirmed
+      Place("嵐州", 38.279444, 111.671111, PlaceType.Prefecture), // 治今山西嵐縣  To be confirmed
+      Place("汾州", 37.266667, 111.783333, PlaceType.Prefecture), // 治今山西汾陽縣  To be confirmed
+      Place("遼州", 37.081389, 113.380278, PlaceType.Prefecture), // 治今山西左權縣  To be confirmed
+      Place("沁州", 36.500556, 112.338611, PlaceType.Prefecture), // 治今山西沁源縣  To be confirmed
+      Place("石州", 37.52, 111.13, PlaceType.Prefecture), // 治今山西呂梁市離石區  To be confirmed
+      Place("憲州", 38.068611, 111.7975, PlaceType.Prefecture), // 治今山西婁煩縣  To be confirmed
+
       // 劍南節度使
       Place("益州", 30.659722, 104.063333, PlaceType.Prefecture), // 治今四川省成都市
       Place("維州", 31.416667, 103.166667, PlaceType.Prefecture), // 今四川省理縣東北  To be confirmed
+
+      // 鎮海軍節度使
+      Place("润州", 32.188, 119.428, PlaceType.Prefecture), // 治今江苏省镇江市  To be confirmed
+      Place("杭州", 30.266667, 120.2, PlaceType.Prefecture), // 治今浙江省杭州市  To be confirmed
+      Place("常州", 31.81, 119.976, PlaceType.Prefecture), // 治今江苏省常州市  To be confirmed
+      Place("苏州", 31.5, 120.616667, PlaceType.Prefecture), // 治今江苏省苏州市  To be confirmed
+      Place("湖州", 30.894, 120.087, PlaceType.Prefecture), // 治今浙江省湖州市  To be confirmed
+      Place("昇州", 32.043889, 118.778611, PlaceType.Prefecture), // 治今江苏省南京市  To be confirmed
+      Place("宣州", 30.945, 118.814167, PlaceType.Prefecture), // 治今安徽省宣城市  To be confirmed
+      Place("歙州", 29.87, 118.42, PlaceType.Prefecture), // 治今安徽省歙縣  To be confirmed
+      Place("饶州", 28.993333, 116.679444, PlaceType.Prefecture), // 治今江西省鄱陽縣  To be confirmed
+      Place("江州", 29.7054, 116.0026, PlaceType.Prefecture), // 治今江西省九江市  To be confirmed
+
+      // 嶺南節度使
+      // 廣管
+      Place("廣州", 23.128795, 113.258976, PlaceType.Prefecture), // 治今廣東省廣州市  To be confirmed
+      // 容管
+      Place("容州", 22.5168, 110.482, PlaceType.Prefecture), // 治今廣西北流市  To be confirmed
+      // 邕管
+      Place("邕州", 22.8161, 108.3664, PlaceType.Prefecture), // 治今廣西南寧市 (coordinates is based on current 南寧市), Should be 治所在宣化县（今广西壮族自治区南宁市南）in Tang dynasty
+      Place("橫州", 22.689, 109.271, PlaceType.Prefecture), // 治今廣西橫縣  To be confirmed
+      Place("欽州", 21.98, 108.654, PlaceType.Prefecture), // 治今廣西欽州市  To be confirmed
+      Place("賓州", 23.222222, 108.805556, PlaceType.Prefecture), // 治今今廣西賓陽縣  To be confirmed
+      // 桂管
+      Place("桂州", 25.2344, 110.1799, PlaceType.Prefecture), // 治今廣西桂林市  To be confirmed
+      Place("連州", 24.783333, 112.383333, PlaceType.Prefecture), // 治今廣東連州市  To be confirmed
+      Place("柳州", 24.3262, 109.4284, PlaceType.Prefecture), // 治今廣西柳州市  To be confirmed
+      // 交管
+      Place("交州", 21.028472, 105.854167, PlaceType.Prefecture), // 治今越南河內市  To be confirmed
 
       // 吐蕃
       Place("邏些城", 29.65, 91.1, PlaceType.Capital) // 治今拉薩. Confirmed
