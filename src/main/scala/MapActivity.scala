@@ -16,7 +16,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Button
+import android.widget.{Button, ImageButton}
 import android.util.Log
 import net.whily.scaland.{ExceptionHandler, Util}
 
@@ -41,6 +41,21 @@ class MapActivity extends Activity {
     bookButton.setOnClickListener(new OnClickListener() {
       override def onClick(view: View) {
         startActivity(new Intent(activity, classOf[BookActivity]))
+      }
+    })
+
+    val mapView = findViewById(R.id.map).asInstanceOf[MapView]
+    val prevButton = findViewById(R.id.prevButton).asInstanceOf[ImageButton]
+    prevButton.setOnClickListener(new OnClickListener() {
+      override def onClick(view: View) {
+        mapView.prevSnapshot()
+      }
+    })
+
+    val nextButton = findViewById(R.id.nextButton).asInstanceOf[ImageButton]
+    nextButton.setOnClickListener(new OnClickListener() {
+      override def onClick(view: View) {
+        mapView.nextSnapshot()
       }
     })
 

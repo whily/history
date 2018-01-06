@@ -85,6 +85,16 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     true
   }
 
+  def prevSnapshot() {
+    map.prevSnapshot()
+    invalidate()
+  }
+
+  def nextSnapshot() {
+    map.nextSnapshot()
+    invalidate()
+  }
+
   override protected def onDraw(canvas: Canvas) {
     canvas.drawColor(Color.BLACK)
 
