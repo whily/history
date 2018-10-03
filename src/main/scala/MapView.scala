@@ -24,7 +24,7 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
   // It seems that extension of View should be done by extending View(context, attrs)
   // instead of extending View(context) directly.
 
-  private var map: TileMap = null
+  private val map = new TileMap(context, 0)
 
   private var prevX = 0.0f
   private var prevY = 0.0f
@@ -95,12 +95,10 @@ class MapView(context: Context, attrs: AttributeSet) extends View(context, attrs
     invalidate()
   }
 
+  def getSnapshotDate(): String = map.getSnapshotDate()
+
   override protected def onDraw(canvas: Canvas) {
     canvas.drawColor(Color.BLACK)
-
-    if (map == null) {
-      map = new TileMap(context, 0)
-    }
     map.draw(canvas, paint, centerLon, centerLat, screenZoomLevel,
              userLon, userLat)
   }

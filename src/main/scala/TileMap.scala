@@ -90,6 +90,9 @@ class TileMap(context: Context, zoomLevel: Int) {
     }
   }
 
+  def getSnapshotDate(): String =
+    database(snapshotIndex).date.toString
+
   def draw(canvas: Canvas, paint: Paint, centerLon: Double, centerLat: Double,
            screenZoomLevel: Int, userLon: Double, userLat: Double) {
     // Ignore source/destination density by using RectF version of drawBitmap.

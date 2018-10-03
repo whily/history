@@ -16,7 +16,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.{Button, ImageButton}
+import android.widget.{Button, ImageButton, TextView}
 import android.util.Log
 import net.whily.scaland.{ExceptionHandler, Util}
 
@@ -44,18 +44,22 @@ class MapActivity extends Activity {
       }
     })
 
+    val dateTextView = findViewById(R.id.dateTextView).asInstanceOf[TextView]
     val mapView = findViewById(R.id.map).asInstanceOf[MapView]
+    dateTextView.setText(mapView.getSnapshotDate())
     val prevButton = findViewById(R.id.prevButton).asInstanceOf[ImageButton]
     prevButton.setOnClickListener(new OnClickListener() {
       override def onClick(view: View) {
         mapView.prevSnapshot()
+        dateTextView.setText(mapView.getSnapshotDate())
       }
     })
 
     val nextButton = findViewById(R.id.nextButton).asInstanceOf[ImageButton]
     nextButton.setOnClickListener(new OnClickListener() {
-      override def onClick(view: View) {
+      override def onClick(view: View): Unit = {
         mapView.nextSnapshot()
+        dateTextView.setText(mapView.getSnapshotDate())
       }
     })
 
